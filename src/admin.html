@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        var APP_ID = '8hEQSYKwJEU7CanzAR8bEvrG-gzGzoHsz';
+        var APP_KEY = '58ACLXo4M9LF9e9sQKjrwg4Q';
+
+        AV.init({
+            appId: APP_ID,
+            appKey: APP_KEY
+        });
+    </script>
+    <script src="..//node_modules/plupload/js/plupload.min.js"></script>
+    <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
+    <script>
+        console.log(Qiniu)
+    </script>
+</body>
+</html>
