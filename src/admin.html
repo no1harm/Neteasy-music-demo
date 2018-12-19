@@ -5,30 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>管理页面</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/default.css">
 </head>
 <body>
-    <style>
-        *{margin: 0;padding:0}
-        #yyy{
-            margin: 10px 10px;
-            padding: 50px 80px;
-            width: 200px;
-            border: 2px dashed #999;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        #yyy p {
-            font-size: 12px;
-            color: #999;
-            padding-top: 10px;
-        }
-    </style>
-    <div id="yyy">
-        <span id="xxx">Upload</span>
-        <p>文件大小不能超过 40Mb </p>
+    <div class="body-container">
+        <aside>
+            <div class="new-song">
+                新建歌曲
+            </div>
+            <ul class="song-list">
+                <li>新建歌曲1</li>
+                <li>新建歌曲2</li>
+                <li>新建歌曲3</li>
+                <li>新建歌曲4</li>
+                <li>新建歌曲5</li>
+                <li>新建歌曲6</li>
+                <li>新建歌曲7</li>
+                <li>新建歌曲8</li>
+                <li>新建歌曲9</li>
+                <li>新建歌曲10</li>
+            </ul>
+            <div id="uploadClick" class="upload-dragger">
+                <div id="upload-area" class="upload-area">
+                    <span>Upload</span>
+                    <p>文件大小不能超过 40Mb </p>
+                </div>
+            </div>
+        </aside>
+        <main>
+            <div class="form-container">
+                <form>
+                    <label>歌名</label>
+                    <input type="text" value="歌名">
+                    <label>歌手</label>
+                    <input type="text" value="歌手">
+                </form>
+            </div>
+        </main>
     </div>
     <span id="uploadStatus"></span>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
@@ -48,13 +61,13 @@
     <script>
         var uploader = Qiniu.uploader({
             runtimes: 'html5',    //上传模式,依次退化
-            browse_button: 'xxx',       //上传选择的点选按钮，**必需**
+            browse_button: 'uploadClick',       //上传选择的点选按钮，**必需**
             uptoken_url: 'http://localhost:8888/uptoken',
             domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
             get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
             max_file_size: '40mb',           //最大文件体积限制
             dragdrop: true,                   //开启可拖曳上传
-            drop_element: 'yyy',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+            drop_element: 'upload-area',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
             auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
             init: {
                 'FilesAdded': function (up, files) {
