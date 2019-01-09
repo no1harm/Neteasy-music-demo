@@ -17,7 +17,7 @@
                 runtimes: 'html5',    //上传模式,依次退化
                 browse_button: this.view.find('#upload-area'),       //上传选择的点选按钮，**必需**
                 uptoken_url: 'http://localhost:8888/uptoken',
-                domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+                domain: 'pl1tcyxr1.bkt.clouddn.com',   //bucket 域名，下载资源时用到，**必需**
                 get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
                 max_file_size: '40mb',           //最大文件体积限制
                 dragdrop: true,                   //开启可拖曳上传
