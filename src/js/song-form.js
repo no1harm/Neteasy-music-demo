@@ -48,6 +48,7 @@
             song.set('url',url);
             return song.save().then((newSong) => {
                 let {id,attributes} = newSong
+                // this.data = {id,...attributes}
                 Object.assign(this.data,{
                     id,
                     ...attributes
@@ -81,7 +82,8 @@
                 this.model.saveSong(data)
                     .then(()=>{
                         this.reset({})
-                        window.eventHub.emit('create',this.model.data)
+                        let obj = JSON.parse(JSON.stringify(this.model.data))
+                        window.eventHub.emit('create',obj)
                     })
             })
         },
