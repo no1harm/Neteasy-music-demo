@@ -3,7 +3,7 @@
         el:'.songList-container',
         template:`
         <ul class="song-list">
-            <li>新建歌曲1</li>
+            <li class="active">新建歌曲1</li>
             <li>新建歌曲2</li>
             <li>新建歌曲3</li>
             <li>新建歌曲4</li>
@@ -17,6 +17,9 @@
         `,
         render(data){
             $(this.el).html(this.template)
+        },
+        removeActive(){
+            $(this.el).find('.active').removeClass('active')
         }
     }
     let model = {}
@@ -26,10 +29,9 @@
             this.model = model
             this.view.render(this.model.data)
             window.eventHub.on('upload',(data)=>{
-                console.log("songList 接受到消息")
-                console.log(data)
+                this.view.removeActive()
             })
-        }
+        },
     }
     controller.init(view,model)
 }

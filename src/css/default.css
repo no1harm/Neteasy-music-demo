@@ -9,6 +9,9 @@ body{font-size: 12px;line-height: 1.5;}
     display: flex;
     min-height: 100vh;
 }
+.body-container main{
+    background-color: #eee;
+}
 .body-container aside{
     width: 200px;
 }
@@ -16,10 +19,13 @@ body{font-size: 12px;line-height: 1.5;}
     height: 50px;
     text-align: center;
     line-height: 50px;
-    border-bottom: 2px solid rgb(230, 230, 230);
+    border-bottom: 2px solid #eee;
 }
 .body-container aside .song-list li{
     padding: 10px;
+}
+.body-container aside .song-list li.active{
+    background-color: #eee;
 }
 .upload-dragger{
     cursor: pointer;
@@ -44,5 +50,5 @@ body{font-size: 12px;line-height: 1.5;}
     flex-grow: 1;
 }
 .new-song.active{
-    background-color: rgb(209, 209, 209);
+    background-color: #eee;
 }
