@@ -15,6 +15,9 @@ body{font-size: 12px;line-height: 1.5;}
 .body-container aside{
     width: 200px;
 }
+.songList-container{
+    min-height: 60%;
+}
 .body-container aside .new-song{
     height: 50px;
     text-align: center;

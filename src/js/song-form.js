@@ -67,7 +67,7 @@
             this.view.render(this.model.data)
             window.eventHub.on('upload',(data)=>{
                 console.log("songForm 接受到消息")
-                console.log(data)
+                this.model.data = data
                 this.reset(data)
             })
         },
