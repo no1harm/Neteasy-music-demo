@@ -8,15 +8,15 @@
         <form class="form">
             <div class="row">
                 <label>歌名</label>
-                <input name="name" type="text" value="__key__">
+                <input name="name" type="text" value="__name__">
             </div>
             <div class="row">
                 <label>歌手</label>
-                <input name="singer" type="text" value="歌手">
+                <input name="singer" type="text" value="__singer__">
             </div>
             <div class="row">
                 <label>外链</label>
-                <input name="url" type="text" value="__link__">
+                <input name="url" type="text" value="__url__">
             </div>
             <div class="row">
                 <button type="submit" >保存</button>
@@ -24,7 +24,7 @@
         </form>
         `,
         render(data = {}){
-            let placeholder = ['key','link']
+            let placeholder = ['name','singer','url']
             let html = this.template
             placeholder.map((string)=>{
                 html = html.replace(`__${string}__`,data[string] || '')
@@ -36,7 +36,8 @@
         data:{
             name:'',
             singer:'',
-            url:''
+            url:'',
+            id:''
         },
         saveSong(data){
             let {name,singer,url} = data
@@ -45,8 +46,12 @@
             song.set('name',name);
             song.set('singer',singer);
             song.set('url',url);
-            song.save().then(function (newSong) {
-              console.log('newSong is ' + newSong);
+            return song.save().then((newSong) => {
+                let {id,attributes} = newSong
+                Object.assign(this.data,{
+                    id,
+                    ...attributes
+                })
             }, function (error) {
               console.error(error);
             });
@@ -74,6 +79,10 @@
                     data[string] = this.view.$el.find(`[name="${string}"]`).val()
                 })
                 this.model.saveSong(data)
+                    .then(()=>{
+                        console.log(this.model.data)
+                        this.reset(this.model.data)
+                    })
             })
         },
         reset(data){
