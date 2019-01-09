@@ -2,27 +2,27 @@
     let view = {
         el:'.songList-container',
         template:`
-        <ul class="song-list">
-            <li>新建歌曲1</li>
-            <li>新建歌曲2</li>
-            <li>新建歌曲3</li>
-            <li>新建歌曲4</li>
-            <li>新建歌曲5</li>
-            <li>新建歌曲6</li>
-            <li>新建歌曲7</li>
-            <li>新建歌曲8</li>
-            <li>新建歌曲9</li>
-            <li>新建歌曲10</li>
+        <ul class="song-list">      
         </ul>
         `,
         render(data){
             $(this.el).html(this.template)
+            let liList = []
+            let $el = $(this.el)
+            $el.find('ul').empty()
+            data.songs.map((song)=>{
+                $el.find('ul').append($('<li></li>').text(song.name))
+            })
         },
         removeActive(){
             $(this.el).find('.active').removeClass('active')
         }
     }
-    let model = {}
+    let model = {
+        data:{
+            songs:[]
+        }
+    }
     let controller = {
         init(view,model){
             this.view = view
@@ -30,6 +30,10 @@
             this.view.render(this.model.data)
             window.eventHub.on('upload',(data)=>{
                 this.view.removeActive()
+            })
+            window.eventHub.on('create',(data)=>{
+                this.model.data.songs.push(data)
+                this.view.render(this.model.data)
             })
         },
     }

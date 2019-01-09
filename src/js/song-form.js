@@ -80,8 +80,8 @@
                 })
                 this.model.saveSong(data)
                     .then(()=>{
-                        console.log(this.model.data)
-                        this.reset(this.model.data)
+                        this.reset({})
+                        window.eventHub.emit('create',this.model.data)
                     })
             })
         },
