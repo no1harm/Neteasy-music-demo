@@ -28,6 +28,10 @@
             this.view = view
             this.model = model
             this.view.render(this.model.data)
+            window.eventHub.on('upload',(data)=>{
+                console.log("songForm 接受到消息")
+                console.log(data)
+            })
         }
     }
     controller.init(view,model)
