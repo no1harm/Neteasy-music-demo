@@ -12,6 +12,7 @@
             this.view = view
             this.model = model
             this.view.render(this.model.data)
+            this.active()            
             window.eventHub.on('upload',(data)=>{
                 console.log("newSong 接受到消息")
                 console.log(data)

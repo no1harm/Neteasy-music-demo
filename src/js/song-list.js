@@ -3,7 +3,7 @@
         el:'.songList-container',
         template:`
         <ul class="song-list">
-            <li class="active">新建歌曲1</li>
+            <li>新建歌曲1</li>
             <li>新建歌曲2</li>
             <li>新建歌曲3</li>
             <li>新建歌曲4</li>
