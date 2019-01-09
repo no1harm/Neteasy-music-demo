@@ -5,7 +5,7 @@
         <form class="form">
             <div class="row">
                 <label>歌名</label>
-                <input type="text" value="歌名">
+                <input type="text" value="__key__">
             </div>
             <div class="row">
                 <label>歌手</label>
@@ -13,13 +13,18 @@
             </div>
             <div class="row">
                 <label>外链</label>
-                <input type="text" value="外链">
+                <input type="text" value="__link__">
             </div>
             <input type="button" value="保存">
         </form>
         `,
-        render(data){
-            $(this.el).html(this.template)
+        render(data = {}){
+            let placeholder = ['key','link']
+            let html = this.template
+            placeholder.map((string)=>{
+                html = html.replace(`__${string}__`,data[string] || '')
+            })
+            $(this.el).html(html)
         }
     }
     let model = {}
@@ -31,7 +36,11 @@
             window.eventHub.on('upload',(data)=>{
                 console.log("songForm 接受到消息")
                 console.log(data)
+                this.reset(data)
             })
+        },
+        reset(data){
+            this.view.render(data)
         }
     }
     controller.init(view,model)
