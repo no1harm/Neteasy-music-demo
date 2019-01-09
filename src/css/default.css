@@ -43,3 +43,6 @@ body{font-size: 12px;line-height: 1.5;}
 .body-container main{
     flex-grow: 1;
 }
+.new-song.active{
+    background-color: rgb(209, 209, 209);
+}
