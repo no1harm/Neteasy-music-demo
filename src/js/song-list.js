@@ -11,8 +11,12 @@
             let $el = $(this.el)
             $el.find('ul').empty()
             data.songs.map((song)=>{
-                $el.find('ul').append($('<li></li>').text(song.name))
+                $el.find('ul').append($('<li></li>').text(song.name).attr("data-song-id",song.id))
             })
+        },
+        addActive(selected){
+            $(selected).addClass('active')
+                .siblings('.active').removeClass('active')
         },
         removeActive(){
             $(this.el).find('.active').removeClass('active')
@@ -37,6 +41,25 @@
             this.view = view
             this.model = model
             this.view.render(this.model.data)
+            this.bindEventsHub()
+            this.bindEvents()
+            this.getAllSongs()        
+        },
+        getAllSongs(){
+            return this.model.find().then(()=>{
+                this.view.render(this.model.data)
+            })
+        },
+        bindEvents(){
+            $(this.view.el).on('click','li',(e)=>{
+                this.view.addActive(e.currentTarget)
+                let songId = e.currentTarget.getAttribute('data-song-id')
+                window.eventHub.emit('select',{
+                    id:songId
+                })
+            })
+        },
+        bindEventsHub(){
             window.eventHub.on('upload',(data)=>{
                 this.view.removeActive()
             })
@@ -44,10 +67,7 @@
                 this.model.data.songs.push(data)
                 this.view.render(this.model.data)
             })
-            this.model.find().then(()=>{
-                this.view.render(this.model.data)
-            })
-        },
+        }
     }
     controller.init(view,model)
 }
