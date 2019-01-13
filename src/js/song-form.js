@@ -79,6 +79,9 @@
                 this.model.data = data
                 this.reset(this.model.data)
             })
+            window.eventHub.on('newSong',()=>{
+                this.reset({})
+            })
         },
         bindEvents(){
             this.view.$el.on('submit','form',(e)=>{

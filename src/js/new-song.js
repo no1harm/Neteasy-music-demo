@@ -12,13 +12,20 @@
             this.view = view
             this.model = model
             this.view.render(this.model.data)
-            this.active()            
+            this.active()
+            this.bindEvents()          
             window.eventHub.on('upload',(data)=>{
                 this.active()
             })
             window.eventHub.on('select',(data)=>{
                 console.log(data)
                 this.removeActive()
+            })
+        },
+        bindEvents(){
+            $(this.view.el).on('click',()=>{
+                this.active()
+                window.eventHub.emit('newSong')
             })
         },
         active(){

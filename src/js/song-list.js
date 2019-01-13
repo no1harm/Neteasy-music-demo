@@ -74,6 +74,9 @@
                 this.model.data.songs.push(data)
                 this.view.render(this.model.data)
             })
+            window.eventHub.on('newSong',()=>{
+                this.view.removeActive()
+            })
         }
     }
     controller.init(view,model)
