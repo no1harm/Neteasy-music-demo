@@ -30,6 +30,11 @@
                 html = html.replace(`__${string}__`,data[string] || '')
             })
             $(this.el).html(html)
+            if(data.id){
+                $(this.el).prepend('<h1>编辑歌曲</h1>')
+            }else{
+                $(this.el).prepend('<h1>新建歌曲</h1>')
+            }
         }
     }
     let model = {
