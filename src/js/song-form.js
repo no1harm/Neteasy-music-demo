@@ -89,17 +89,19 @@
             })
         },
         bindEventHub(){
-            window.eventHub.on('upload',(data)=>{
-                console.log("songForm 接受到消息")
-                this.model.data = data
-                this.reset(data)
-            })
             window.eventHub.on('select',(data)=>{
                 this.model.data = data
                 this.reset(this.model.data)
             })
-            window.eventHub.on('newSong',()=>{
-                this.reset({})
+            window.eventHub.on('newSong',(data)=>{
+                data = data || {
+                    name:'',
+                    singer:'',
+                    url:'',
+                    id:''
+                }
+                this.model.data = data
+                this.reset(this.model.data)
             })
         },
         reset(data){

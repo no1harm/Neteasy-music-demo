@@ -18,17 +18,15 @@
         },
         bindEvents(){
             $(this.view.el).on('click',()=>{
-                this.active()
                 window.eventHub.emit('newSong')
             })
         },
         bindEventHub(){
-            window.eventHub.on('upload',(data)=>{
-                this.active()
-            })
             window.eventHub.on('select',(data)=>{
-                console.log(data)
                 this.removeActive()
+            })
+            window.eventHub.on('newSong',(data)=>{
+                this.active()
             })
         },
         active(){
