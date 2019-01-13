@@ -70,6 +70,10 @@
                 this.model.data = data
                 this.reset(data)
             })
+            window.eventHub.on('select',(data)=>{
+                this.model.data = data
+                this.reset(this.model.data)
+            })
         },
         bindEvents(){
             this.view.$el.on('submit','form',(e)=>{
