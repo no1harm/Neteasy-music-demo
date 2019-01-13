@@ -94,13 +94,16 @@
                 this.reset(this.model.data)
             })
             window.eventHub.on('newSong',(data)=>{
-                data = data || {
-                    name:'',
-                    singer:'',
-                    url:'',
-                    id:''
+                if(this.model.data.id){
+                    this.model.data = {
+                        name:'',
+                        singer:'',
+                        url:'',
+                        id:''
+                    }
+                }else{
+                    Object.assign(this.model.data,data)
                 }
-                this.model.data = data
                 this.reset(this.model.data)
             })
         },
