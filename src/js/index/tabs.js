@@ -19,6 +19,8 @@
                 let $li = $(e.currentTarget)
                 $li.addClass('active')
                     .siblings().removeClass('active')
+                let tabName = $li.attr('data-tab-name')
+                window.eventHub.emit('selectedTab',tabName)
             })
         },
         bindEventsHub(){}

@@ -19,14 +19,14 @@
           </section>
           <section class="globalTabs" id="tabsNav">
             <ol class="tabs-nav">
-              <li class=active> <div class="text"> 推荐音乐 </div> </li>
-              <li><div class="text">热歌榜</div></li>
-              <li><div class="text">搜索</div></li>
+              <li class=active data-tab-name="page-1"> <div class="text"> 推荐音乐 </div> </li>
+              <li data-tab-name="page-2"><div class="text">热歌榜</div></li>
+              <li data-tab-name="page-3"><div class="text">搜索</div></li>
             </ol>
           </section>
         </div>
         <ol class="tab-content noCollapse">
-          <li class="page-1 active">
+          <li class="page-1 active" >
             <section class="playlists">
               <h2 class="sectionTitle">推荐歌单</h2>
               <ol class="songs">
@@ -86,8 +86,8 @@
               </div>
             </section>
           </li>
-          <li class="page-2">page 2</li>
-          <li class="page-3">
+          <li class="page-2" >page 2</li>
+          <li class="page-3" >
             <input id="search" type="text" style="background:#EBECEC;">
             <ol id="searchResult"></ol>
           </li>
@@ -100,6 +100,9 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./js/admin/event-hub.js"></script>
     <script src="./js/index/tabs.js"></script>
+    <script src="./js/index/page-1.js"></script>
+    <script src="./js/index/page-2.js"></script>
+    <script src="./js/index/page-3.js"></script>
 
 </body>
 </html>
