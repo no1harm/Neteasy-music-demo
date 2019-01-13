@@ -74,6 +74,16 @@
             window.eventHub.on('newSong',(data)=>{
                 this.view.removeActive()
             })
+            window.eventHub.on('update',(data)=>{
+                let songs = this.model.data.songs
+                for(let i =0;i<songs.length;i++){
+                    if(songs[i].id === data.id){
+                        Object.assign(songs[i],data)
+                        break
+                    }
+                }
+                this.view.render(this.model.data)
+            })
         }
     }
     controller.init(view,model)

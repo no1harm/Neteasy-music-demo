@@ -61,6 +61,18 @@
             }, function (error) {
               console.error(error);
             });
+        },
+        update(data){
+            let {name,url,singer} = data
+            let id = this.data.id
+            let song = AV.Object.createWithoutData('Song',id)
+            song.set('name', name)
+            song.set('url', url)
+            song.set('singer', singer)
+            return song.save().then((res)=>{
+                Object.assign(this.data,data)
+                return res
+            })
         }
     }
     let controller = {
@@ -74,18 +86,13 @@
         },
         bindEvents(){
             this.view.$el.on('submit','form',(e)=>{
-                e.preventDefault();
-                let needs = ['name','singer','url']
-                let data = {}
-                needs.map((string)=>{
-                    data[string] = this.view.$el.find(`[name="${string}"]`).val()
-                })
-                this.model.saveSong(data)
-                    .then(()=>{
-                        this.reset({})
-                        let obj = JSON.parse(JSON.stringify(this.model.data))
-                        window.eventHub.emit('create',obj)
-                    })
+                e.preventDefault()
+                if(this.model.data.id){
+                    this.update()
+                }else{
+                    this.create()
+                }
+                
             })
         },
         bindEventHub(){
@@ -106,6 +113,31 @@
                 }
                 this.reset(this.model.data)
             })
+        },
+        create(){
+            let needs = ['name','singer','url']
+            let data = {}
+            needs.map((string)=>{
+                data[string] = this.view.$el.find(`[name="${string}"]`).val()
+            })
+            this.model.saveSong(data)
+                .then(()=>{
+                    this.reset({})
+                    let obj = JSON.parse(JSON.stringify(this.model.data))
+                    window.eventHub.emit('create',obj)
+                })
+        },
+        update(){
+            let needs = ['name','singer','url']
+            let data = {}
+            needs.map((string)=>{
+                data[string] = this.view.$el.find(`[name="${string}"]`).val()
+            })
+            this.model.update(data)
+                .then(()=>{
+                    alert('Update Successful')
+                    window.eventHub.emit('update',JSON.parse(JSON.stringify(this.model.data)))
+                })
         },
         reset(data){
             this.view.render(data)
