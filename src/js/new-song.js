@@ -14,18 +14,21 @@
             this.view.render(this.model.data)
             this.active()
             this.bindEvents()          
+            this.bindEventHub()
+        },
+        bindEvents(){
+            $(this.view.el).on('click',()=>{
+                this.active()
+                window.eventHub.emit('newSong')
+            })
+        },
+        bindEventHub(){
             window.eventHub.on('upload',(data)=>{
                 this.active()
             })
             window.eventHub.on('select',(data)=>{
                 console.log(data)
                 this.removeActive()
-            })
-        },
-        bindEvents(){
-            $(this.view.el).on('click',()=>{
-                this.active()
-                window.eventHub.emit('newSong')
             })
         },
         active(){

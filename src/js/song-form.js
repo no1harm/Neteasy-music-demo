@@ -70,18 +70,7 @@
             this.model = model
             this.bindEvents()
             this.view.render(this.model.data)
-            window.eventHub.on('upload',(data)=>{
-                console.log("songForm 接受到消息")
-                this.model.data = data
-                this.reset(data)
-            })
-            window.eventHub.on('select',(data)=>{
-                this.model.data = data
-                this.reset(this.model.data)
-            })
-            window.eventHub.on('newSong',()=>{
-                this.reset({})
-            })
+            this.bindEventHub()
         },
         bindEvents(){
             this.view.$el.on('submit','form',(e)=>{
@@ -97,6 +86,20 @@
                         let obj = JSON.parse(JSON.stringify(this.model.data))
                         window.eventHub.emit('create',obj)
                     })
+            })
+        },
+        bindEventHub(){
+            window.eventHub.on('upload',(data)=>{
+                console.log("songForm 接受到消息")
+                this.model.data = data
+                this.reset(data)
+            })
+            window.eventHub.on('select',(data)=>{
+                this.model.data = data
+                this.reset(this.model.data)
+            })
+            window.eventHub.on('newSong',()=>{
+                this.reset({})
             })
         },
         reset(data){
