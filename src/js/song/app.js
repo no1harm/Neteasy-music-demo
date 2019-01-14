@@ -4,7 +4,11 @@
         init(){
             this.$el = $(this.el)
         },
-        render(data){},
+        render(data){
+            let {song} = data
+            this.$el.css('background-image',`url(${song.cover})`)
+            this.$el.find('img.cover').attr('src',song.cover)
+        },
         play(){}
     }
     let model = {
@@ -39,7 +43,6 @@
             let id = this.getSongId()
             this.model.setId(id)
             this.model.getSong(id).then((data)=>{
-                console.log(this.model.data)
                 this.view.render(this.model.data)
                 this.view.play()
             })

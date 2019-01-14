@@ -7,8 +7,20 @@
 }
 
 .page{display: flex; flex-direction: column; height: 100vh;
-	background: transparent url(http://p3.music.126.net/z4p2xss2a50qNHe6TLFdoA==/2425522650910827.jpg) no-repeat center;
+	background: transparent no-repeat center;
 	background-size: cover;
+}
+.page::before{
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* filter: blur(10px);
+	background: transparent no-repeat center;
+	background-size: cover; */
 }
 
 .disc-container{position: relative; }
