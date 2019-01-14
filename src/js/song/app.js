@@ -1,5 +1,16 @@
 {
-    let view =  {}
+    let view =  {
+        el:"#app",
+        template:`
+        <audio controls src={{url}}></audio>
+        `,
+        init(){
+            this.$el = $(this.el)
+        },
+        render(data){
+            this.$el.html(this.template.replace("{{url}}",data.url))
+        }
+    }
     let model = {
         data:{
             name:'',
@@ -23,11 +34,12 @@
     let controller = {
         init(view,model){
             this.view = view
+            this.view.init()
             this.model = model
             let id = this.getSongId()
             this.model.setId(id)
             this.model.getSong(id).then((data)=>{
-                console.log(this.model.data)
+                this.view.render(this.model.data)
             })
         },
         getSongId(){
