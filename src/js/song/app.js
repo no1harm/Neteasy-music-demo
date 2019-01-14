@@ -20,6 +20,21 @@
                 this.$el.find('.disc-container').removeClass('playing')
             }
             this.$el.find('.song-description > h1').text(song.name)
+            let array = song.lyrics.split('\n')
+            array.map((string)=>{
+                let p = document.createElement('p')
+
+                let regex = /\[([\d:.]+)\](.+)/
+                let matches = string.match(regex)
+                if(matches){
+                    p.textContent = matches[2]
+                    p.setAttribute('data-time',matches[1])
+                }else{
+                    p.textContent = string
+                }
+
+                this.$el.find('.lyric > .lines').append(p)
+            })
         },
         play(){
             let audio = this.$el.find('audio')[0]
@@ -37,7 +52,8 @@
                 singer:'',
                 url:'',
                 id:'',
-                cover:''
+                cover:'',
+                lyrics:''
             },
             status:'paused'
         },
