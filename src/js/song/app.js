@@ -4,24 +4,18 @@
         init(){
             this.$el = $(this.el)
         },
-        render(data){
-            this.$el.html(this.template.replace("{{url}}",data.url))
-        },
-        play(){
-            let audio = this.$el.find('audio')[0]
-            audio.play()
-        },
-        pause(){
-            let audio = this.$el.find('audio')[0]
-            audio.pause()
-        }
+        render(data){},
+        play(){}
     }
     let model = {
         data:{
-            name:'',
-            singer:'',
-            url:'',
-            id:''
+            song:{
+                name:'',
+                singer:'',
+                url:'',
+                id:''
+            },
+            status:'paused'
         },
         setId(id){
             this.data.id = id
@@ -44,17 +38,12 @@
             let id = this.getSongId()
             this.model.setId(id)
             this.model.getSong(id).then((data)=>{
-                // this.view.render(this.model.data)
+                this.view.render(this.model.data)
+                this.view.play()
             })
             this.bindEvents()
         },
         bindEvents(){
-            this.view.$el.on('click','.play',()=>{
-                this.view.play()
-            })
-            this.view.$el.on('click','.pause',()=>{
-                this.view.pause()
-            })
         },
         getSongId(){
             let search = window.location.search
