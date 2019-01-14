@@ -1,3 +1,4 @@
+
 {
     let view =  {
         el:"#app",
@@ -12,6 +13,9 @@
                 let audio = this.$el.find('audio').attr('src',song.url).get(0)
                 audio.onended = () =>{
                     window.eventHub.emit('songEnd')
+                }
+                audio.ontimeupdate = () =>{
+                    this.showLyrics(audio.currentTime)
                 }
             }
             if(status === 'playing'){
@@ -28,13 +32,42 @@
                 let matches = string.match(regex)
                 if(matches){
                     p.textContent = matches[2]
-                    p.setAttribute('data-time',matches[1])
+                    let time = matches[1].split(':')
+                    let partTime1 = time[0]
+                    let partTime2 = time[1]
+                    let totalTime = parseInt(partTime1,10) * 60 + parseFloat(partTime2,10)
+                    p.setAttribute('data-time',totalTime)
                 }else{
                     p.textContent = string
                 }
 
                 this.$el.find('.lyric > .lines').append(p)
             })
+        },
+        showLyrics(time){
+            let allP = this.$el.find('.lyric > .lines > p')
+            let p
+            for(let i=0;i<allP.length;i++){
+                if(i === allP.length - 1){
+                    p = allP[i]
+                    break
+                }else{
+                    let currentTime = allP.eq(1).attr('data-time')
+                    let nextTime = allP.eq(i+1).attr('data-time')
+                    if(currentTime <= time && time < nextTime){
+                        p = allP[i]
+                        break
+                    }
+                }
+            }
+            console.log(p)
+            let pHeight = p.getBoundingClientRect().top
+            let linesHeight = this.$el.find('.lyric > .lines')[0].getBoundingClientRect().top
+            let height = pHeight - linesHeight
+            this.$el.find('.lyric > .lines').css({
+                transform:`translateY(${-(height - 25)}px)`
+            })
+            $(p).addClass('active').siblings('.active').removeClass('active')
         },
         play(){
             let audio = this.$el.find('audio')[0]
