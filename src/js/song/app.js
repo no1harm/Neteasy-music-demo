@@ -13,17 +13,18 @@
                 name:'',
                 singer:'',
                 url:'',
-                id:''
+                id:'',
+                cover:''
             },
             status:'paused'
         },
         setId(id){
-            this.data.id = id
+            this.data.song.id = id
         },
         getSong(id){
             let query = new AV.Query('Song');
             return query.get(id).then((song) => {
-                Object.assign(this.data,song.attributes)
+                Object.assign(this.data.song,song.attributes)
                 return song
             }, (error)=> {
                 console.log(error)
@@ -38,6 +39,7 @@
             let id = this.getSongId()
             this.model.setId(id)
             this.model.getSong(id).then((data)=>{
+                console.log(this.model.data)
                 this.view.render(this.model.data)
                 this.view.play()
             })
