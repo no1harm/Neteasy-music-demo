@@ -19,6 +19,7 @@
             }else{
                 this.$el.find('.disc-container').removeClass('playing')
             }
+            this.$el.find('.song-description > h1').text(song.name)
         },
         play(){
             let audio = this.$el.find('audio')[0]
