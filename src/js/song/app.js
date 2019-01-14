@@ -48,19 +48,18 @@
             let allP = this.$el.find('.lyric > .lines > p')
             let p
             for(let i=0;i<allP.length;i++){
-                if(i === allP.length - 1){
+                if(i === allP.length-1){
                     p = allP[i]
                     break
                 }else{
-                    let currentTime = allP.eq(1).attr('data-time')
-                    let nextTime = allP.eq(i+1).attr('data-time')
+                    let currentTime = allP.eq(i).attr('data-time')
+                    let nextTime = allP.eq(i+1).attr('data-time')                    
                     if(currentTime <= time && time < nextTime){
                         p = allP[i]
                         break
                     }
                 }
             }
-            console.log(p)
             let pHeight = p.getBoundingClientRect().top
             let linesHeight = this.$el.find('.lyric > .lines')[0].getBoundingClientRect().top
             let height = pHeight - linesHeight
