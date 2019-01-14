@@ -5,11 +5,26 @@
             this.$el = $(this.el)
         },
         render(data){
-            let {song} = data
+            let {song,status} = data
             this.$el.css('background-image',`url(${song.cover})`)
             this.$el.find('img.cover').attr('src',song.cover)
+            if(this.$el.find('audio').attr('src') !== song.url){
+                this.$el.find('audio').attr('src',song.url)
+            }
+            if(status === 'playing'){
+                this.$el.find('.disc-container').addClass('playing')
+            }else{
+                this.$el.find('.disc-container').removeClass('playing')
+            }
         },
-        play(){}
+        play(){
+            let audio = this.$el.find('audio')[0]
+            audio.play()
+        },
+        pause(){
+            let audio = this.$el.find('audio')[0]
+            audio.pause()
+        }
     }
     let model = {
         data:{
@@ -43,12 +58,23 @@
             let id = this.getSongId()
             this.model.setId(id)
             this.model.getSong(id).then((data)=>{
+                this.model.data.status = 'playing'
                 this.view.render(this.model.data)
                 this.view.play()
             })
             this.bindEvents()
         },
         bindEvents(){
+            this.view.$el.on('click','.icon-play',()=>{
+                this.model.data.status = 'playing'
+                this.view.render(this.model.data)
+                this.view.play()
+            })
+            this.view.$el.on('click','.icon-pause',()=>{
+                this.model.data.status = 'paused'
+                this.view.render(this.model.data)
+                this.view.pause()
+            })
         },
         getSongId(){
             let search = window.location.search

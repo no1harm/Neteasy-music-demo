@@ -18,9 +18,9 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	/* filter: blur(10px);
+	filter: blur(10px);
 	background: transparent no-repeat center;
-	background-size: cover; */
+	background-size: cover;
 }
 
 .disc-container{position: relative; }
