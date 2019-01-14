@@ -1,13 +1,6 @@
 {
     let view =  {
         el:"#app",
-        template:`
-        <audio src={{url}}></audio>
-        <div>
-            <button class="play">播放</button>
-            <button class="pause">暂停</button>
-        </div>
-        `,
         init(){
             this.$el = $(this.el)
         },
@@ -51,7 +44,7 @@
             let id = this.getSongId()
             this.model.setId(id)
             this.model.getSong(id).then((data)=>{
-                this.view.render(this.model.data)
+                // this.view.render(this.model.data)
             })
             this.bindEvents()
         },
