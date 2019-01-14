@@ -34,7 +34,6 @@
             let script = document.createElement('script')
             script.src = "./js/index/page-1-recommend.js"
             script.onload = function(){
-                console.log('1 is loading')
             }
             document.body.appendChild(script)
         },
@@ -42,7 +41,6 @@
             let script = document.createElement('script')
             script.src = "./js/index/page-1-new.js"
             script.onload = function(){
-                console.log('2 is loading')
             }
             document.body.appendChild(script)
         }
