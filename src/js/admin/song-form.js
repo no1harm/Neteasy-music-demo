@@ -19,12 +19,16 @@
                 <input name="url" type="text" value="__url__">
             </div>
             <div class="row">
+                <label>封面</label>
+                <input name="cover" type="text" value="__cover__">
+            </div>
+            <div class="row">
                 <button type="submit" >保存</button>
             </div>
         </form>
         `,
         render(data = {}){
-            let placeholder = ['name','singer','url']
+            let placeholder = ['name','singer','url','cover']
             let html = this.template
             placeholder.map((string)=>{
                 html = html.replace(`__${string}__`,data[string] || '')
@@ -42,15 +46,17 @@
             name:'',
             singer:'',
             url:'',
-            id:''
+            id:'',
+            cover:''
         },
         saveSong(data){
-            let {name,singer,url} = data
+            let {name,singer,url,cover} = data
             let Song = AV.Object.extend('Song');
             let song = new Song();
             song.set('name',name);
             song.set('singer',singer);
             song.set('url',url);
+            song.set('cover',cover);
             return song.save().then((newSong) => {
                 let {id,attributes} = newSong
                 // this.data = {id,...attributes}
@@ -63,12 +69,13 @@
             });
         },
         update(data){
-            let {name,url,singer} = data
+            let {name,url,singer,cover} = data
             let id = this.data.id
             let song = AV.Object.createWithoutData('Song',id)
             song.set('name', name)
             song.set('url', url)
             song.set('singer', singer)
+            song.set('cover', cover)
             return song.save().then((res)=>{
                 Object.assign(this.data,data)
                 return res
@@ -106,7 +113,8 @@
                         name:'',
                         singer:'',
                         url:'',
-                        id:''
+                        id:'',
+                        cover:''
                     }
                 }else{
                     Object.assign(this.model.data,data)
@@ -115,7 +123,7 @@
             })
         },
         create(){
-            let needs = ['name','singer','url']
+            let needs = ['name','singer','url','cover']
             let data = {}
             needs.map((string)=>{
                 data[string] = this.view.$el.find(`[name="${string}"]`).val()
@@ -128,7 +136,7 @@
                 })
         },
         update(){
-            let needs = ['name','singer','url']
+            let needs = ['name','singer','url','cover']
             let data = {}
             needs.map((string)=>{
                 data[string] = this.view.$el.find(`[name="${string}"]`).val()
