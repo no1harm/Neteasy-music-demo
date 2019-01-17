@@ -13,6 +13,7 @@
             let playlist = new Playlist()
             playlist.set('name', data.name)
             playlist.set('summary', data.summary)
+            playlist.set('cover', data.cover)
             return playlist.save().then((newSongList) => {
                 this.songListId = newSongList.id
             })
@@ -29,7 +30,7 @@
             this.view.$el.on('submit','form',(e)=>{
                 e.preventDefault()
                 let form = this.view.$form.get(0)
-                let keys = ['name','summary']
+                let keys = ['name','summary','cover']
                 let data = {}
                 keys.reduce((prev,item)=>{
                     prev[item] = form[item].value

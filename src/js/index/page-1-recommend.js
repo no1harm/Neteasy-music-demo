@@ -10,7 +10,7 @@
                 let $li = $(`
                 <li>
                     <div class="cover">
-                    <img width=105 src="${list.url}" alt="封面">
+                    <img width=105 src="${list.cover}" alt="封面">
                     </div>
                     <p>${list.summary}</p>
                 </li>`)
