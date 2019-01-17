@@ -22,7 +22,8 @@
     let model = {
         data:{
             songs:[],
-            selectedSongs:[]
+            selectedSongsId:[],
+            songListId:''
         },
         find(){
             let query = new AV.Query('Song')
@@ -32,6 +33,22 @@
                 })
                 return songs
             })
+        },
+        addSongToList(data){
+            let promise = []
+            let {selectedSongsId,songListId} = data
+            let Playlist = AV.Object.createWithoutData('Playlist',songListId)
+            selectedSongsId.map((songId)=>{
+                let song = AV.Object.createWithoutData('Song',songId)
+                song.set('dependent', Playlist)
+                promise.push(
+                    song.save().then((data) => {
+                    })
+                )
+            })
+            // console.log(promise)
+            return Promise.all(promise).then(()=>{
+            })
         }
     }
     let controller = {
@@ -39,6 +56,7 @@
             this.view = view
             this.view.init()
             this.model = model
+            this.model.data.songListId = this.getSongId()
             this.model.find().then(()=>{
                 this.view.render(this.model.data)
             })
@@ -54,9 +72,31 @@
                     let id = $checkedSongList[i].getAttribute('data-song-id')
                     checkedSong.push(id)
                 }
-                this.model.selectedSongs = checkedSong
-                console.log(this.model.selectedSongs)
+                this.model.data.selectedSongsId = checkedSong
+                
+                this.model.addSongToList(this.model.data).then(()=>{
+                    // console.log(2)
+                })
             })
+        },
+        getSongId(){
+            let search = window.location.search
+
+            search = search.substring(1)
+
+            let arr = search.split('&').filter(v => v)
+
+            let id = ''
+
+            for(let i =0;i<arr.length;i++){
+                let kv = arr[i].split('=')
+                let key = kv[0]
+                let value = kv[1]
+                if(key === 'id'){
+                    id = value
+                }
+            }
+            return id
         }
     }
     controller.init(view,model)

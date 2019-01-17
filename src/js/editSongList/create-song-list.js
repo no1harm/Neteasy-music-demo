@@ -36,7 +36,6 @@
                     return prev
                 },data)
                 this.model.createSongList(data).then(()=>{
-                    console.log(this.model.songListId)
                     window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
                 })
             })
