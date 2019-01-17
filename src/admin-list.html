@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>歌单管理页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/default.css">
+</head>
+<body>
+    <div class="song-list-warpper">
+        <form class="form">
+            <div class="row">
+                <label>歌单名称</label>
+                <input name="name" type="text" >
+            </div>
+            <div class="row">
+                <label>描述</label>
+                <textarea cols=80 rows=10 name="summary"></textarea>
+            </div>
+            <div class="row">
+                <button type="submit" >保存</button>
+            </div>
+        </form>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
+    <script src="./js/initializers/av.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./js/admin/event-hub.js"></script>
+    <script src="./js/admin/create-song-list.js"></script>
+</body>
+</html>
