@@ -7,13 +7,14 @@
         }
     }
     let model = {
+        songListId:'',
         createSongList(data){
             let Playlist = AV.Object.extend('Playlist')
             let playlist = new Playlist()
             playlist.set('name', data.name)
             playlist.set('summary', data.summary)
-            return playlist.save().then((newSong) => {
-                console.log(newSong.id)
+            return playlist.save().then((newSongList) => {
+                this.songListId = newSongList.id
             })
         }
     }
@@ -35,7 +36,8 @@
                     return prev
                 },data)
                 this.model.createSongList(data).then(()=>{
-                    
+                    console.log(this.model.songListId)
+                    window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
                 })
             })
         }
