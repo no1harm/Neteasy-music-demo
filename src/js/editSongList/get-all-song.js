@@ -75,7 +75,8 @@
                 this.model.data.selectedSongsId = checkedSong
                 
                 this.model.addSongToList(this.model.data).then(()=>{
-                    // console.log(2)
+                    alert('歌曲已成功添加至歌单')
+                    window.location.href = './admin.html'
                 })
             })
         },
