@@ -122,6 +122,9 @@ body{
     height: 36px;
     padding: 0 6px;
   }
+  section.playlists  ol.songs a li p{
+    text-align: center;
+  }
   section.playlists > ol.songs > li img{
     width: 100%;
   }

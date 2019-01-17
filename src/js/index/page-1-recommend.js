@@ -8,12 +8,14 @@
             let {songList} = data
             songList.map((list)=>{
                 let $li = $(`
-                <li>
-                    <div class="cover">
-                    <img width=105 src="${list.cover}" alt="封面">
-                    </div>
-                    <p>${list.summary}</p>
-                </li>`)
+                <a href="./playlist-detail.html?id=${list.id}">
+                    <li>
+                        <div class="cover">
+                        <img width=105 src="${list.cover}" alt="封面">
+                        </div>
+                        <p>${list.name}</p>
+                    </li>
+                </a>`)
                 this.$el.find('ol.songs').append($li)
             })        
         }
@@ -38,6 +40,7 @@
             this.view.init()
             this.model = model
             this.model.fetch().then(()=>{
+                console.log(this.model.data)
                 this.view.render(this.model.data)
             })
         }
