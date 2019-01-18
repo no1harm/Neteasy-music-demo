@@ -1,11 +1,11 @@
 {
     let view = {
-        el:'.sumary-wrapper',
+        el:'.playlist-info',
         init(){
             this.$el = $(this.el)
         },
         render(data){
-            let {cover,name} = data
+            let {cover,name,summary} = data
             let $info = $(`
             <div class="cover">
                 <img class="pointer" src="${cover}" alt="">
@@ -13,8 +13,12 @@
             <div class="playlist-name">
                 <p>${name}</p>
             </div>`)
-            this.$el.append($info)
+            let $summary = $(`
+            <p>${summary}</p>
+            `)
+            this.$el.find('.sumary-wrapper').append($info)
             this.$el.find('.blurbg').css('background-image',`url(${cover})`)
+            this.$el.find('.summary').append($summary)
         }
     }
     let model = {
