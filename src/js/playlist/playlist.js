@@ -5,7 +5,13 @@
             this.$el = $(this.el)
         },
         render(data){
-            let {cover,name,summary} = data
+            let {cover,name,summary,tags} = data
+            let tagsList = tags.split(' ')
+            tagsList.map((tag)=>{
+                let $tag = $(`<div class="tag">${tag}</div>`)
+                this.$el.find('.tags .tag-list').append($tag)
+
+            })
             let $info = $(`
             <div class="cover">
                 <img class="pointer" src="${cover}" alt="">
@@ -27,12 +33,13 @@
             name:'',
             summary:'',
             cover:'',
+            tags:'',
             songlist:[]
         },
         fetch(id){
             let query = new AV.Query('Playlist')
-            return query.find(id).then((songs)=>{
-                Object.assign(this.data,songs[0].attributes)
+            return query.get(id).then((song)=>{
+                Object.assign(this.data,song.attributes)
                 return songs
             })
         },
