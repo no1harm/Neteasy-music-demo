@@ -103,3 +103,25 @@ body{font-size: 12px;line-height: 1.5;}
     border-radius: 50%;
     animation: loading 1s infinite linear reverse;
 }
+
+
+
+.song-list-warpper {
+    display: flex;
+}
+.song-list-warpper .playlists{
+    min-width: 200px;
+    text-align: center;
+}
+.song-list-warpper .playlists div {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.song-list-warpper .playlists ol{
+    border:1px solid #eee;
+}
+.song-list-warpper .playlists ol li{
+    padding: 6px;
+}
