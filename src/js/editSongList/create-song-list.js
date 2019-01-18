@@ -7,6 +7,7 @@
         }
     }
     let model = {
+        createOrUpdate:'',
         songListId:'',
         createSongList(data){
             let Playlist = AV.Object.extend('Playlist')
@@ -18,29 +19,43 @@
             return playlist.save().then((newSongList) => {
                 this.songListId = newSongList.id
             })
-        }
+        },
     }
     let controller = {
         init(view,model){
             this.view = view 
             this.view.init()
             this.model = model
-            this.bindEvents()
+            this.model.createOrUpdate = this.getUrl()
         },
         bindEvents(){
-            this.view.$el.on('submit','form',(e)=>{
-                e.preventDefault()
-                let form = this.view.$form.get(0)
-                let keys = ['name','summary','cover','tags']
-                let data = {}
-                keys.reduce((prev,item)=>{
-                    prev[item] = form[item].value
-                    return prev
-                },data)
-                this.model.createSongList(data).then(()=>{
-                    window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
+            if(this.model.createOrUpdate === 'create-list'){
+                this.view.$el.on('submit','form',(e)=>{
+                    e.preventDefault()
+                    let form = this.view.$form.get(0)
+                    let keys = ['name','summary','cover','tags']
+                    let data = {}
+                    keys.reduce((prev,item)=>{
+                        prev[item] = form[item].value
+                        return prev
+                    },data)
+                    this.model.createSongList(data).then(()=>{
+                        window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
+                    })
                 })
-            })
+            }else if(this.model.createOrUpdate === 'update-list'){
+                console.log(1)
+            }
+        },
+        getUrl(){
+            let search = window.location.search
+
+            search = search.substring(1)
+
+            return search
+        },
+        isUpdate(){
+            this.model.fetch()
         }
     }
     controller.init(view,model)
