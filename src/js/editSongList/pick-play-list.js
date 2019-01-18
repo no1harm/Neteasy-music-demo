@@ -18,6 +18,7 @@
     }
     let model = {
         data:{
+            selectedListId:'',
             songList:[]
         },
         isUpdate:'',
@@ -44,6 +45,23 @@
             }else{
                 this.view.hide()
             }
+            this.bindEvents()
+        },
+        bindEvents(){
+            this.view.$el.on('click','li',(e)=>{
+                let listId = e.currentTarget.getAttribute('data-list-id')
+                this.model.data.selectedListId = listId
+                let data
+                let songList = this.model.data.songList
+                for(let i = 0;i<songList.length;i++){
+                    if(songList[i].id === listId){
+                        data = songList[i]
+                        break
+                    }
+                }
+                let copyData = JSON.parse(JSON.stringify(data))
+                window.eventHub.emit('selectPlayList',copyData)
+            })
         },
         getUrl(){
             let search = window.location.search

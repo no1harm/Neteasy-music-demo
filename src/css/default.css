@@ -124,4 +124,5 @@ body{font-size: 12px;line-height: 1.5;}
 }
 .song-list-warpper .playlists ol li{
     padding: 6px;
+    cursor: pointer;
 }
