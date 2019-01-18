@@ -39,7 +39,6 @@ body{
 }
 .info{
     width: 100%;
-    border:1px solid green;
     padding: 10px;
 }
 .info .tags{
@@ -49,16 +48,19 @@ body{
     display: flex;
 }
 .info .tags .tag-list .tag{
-    border: 1px solid red;
+    border: 1px solid #eee;
     margin-right: 10px;
+    padding: 1px 8px;
+    font-size: 12px;
+    border-radius:9999px;
 }
 .info .summary{
     margin-top: 20px;
     margin-bottom: 10px;
-    border:1px solid red;
 }
 .info .summary p {
     display: inline-block;
+    color:#333;
 }
 section.songs{}
   section.songs > .list {
@@ -101,7 +103,6 @@ section.songs{}
     margin: 20px 0 8px;
   }
   .footer{
-      border:1px solid red;
       min-height: 60px;
       bottom: 0;
   }
