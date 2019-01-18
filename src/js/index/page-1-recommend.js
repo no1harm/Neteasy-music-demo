@@ -11,7 +11,7 @@
                 <a href="./playlist-detail.html?id=${list.id}">
                     <li>
                         <div class="cover">
-                        <img width=105 src="${list.cover}" alt="封面">
+                        <img src="${list.cover}" alt="封面">
                         </div>
                         <p>${list.name}</p>
                     </li>

@@ -101,15 +101,13 @@ body{
     display: table;
   }
   
-  section.playlists{
-  }
   section.playlists > ol.songs{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     font-size: 13px;
   }
-  section.playlists > ol.songs > li{
+  section.playlists > ol.songs a {
     width: 32.8%;
     margin: 8px 0;
   }
@@ -125,7 +123,7 @@ body{
   section.playlists  ol.songs a li p{
     text-align: center;
   }
-  section.playlists > ol.songs > li img{
+  section.playlists > ol.songs a li img{
     width: 100%;
   }
   section.songs{}
