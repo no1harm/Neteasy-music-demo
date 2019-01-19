@@ -72,6 +72,26 @@
             })
             return Promise.all(promise).then(()=>{
             })
+        },
+        deleteSongFromList(ids){
+            let notCheckedSong = []
+            let $notCheckedSongList = $("input[name='selectedSong']").not(':checked')
+            for(let i=0;i<$notCheckedSongList.length;i++){
+                let id = $notCheckedSongList[i].getAttribute('data-song-id')
+                notCheckedSong.push(id)
+            }
+            let promise = []
+            let Playlist = AV.Object.createWithoutData('Playlist',this.data.songListId)
+            notCheckedSong.map((songId)=>{
+                let song = AV.Object.createWithoutData('Song',songId)
+                song.set('dependent', null)
+                promise.push(
+                    song.save().then((data) => {
+                    })
+                )
+            })
+            return Promise.all(promise).then(()=>{
+            })
         }
     }
     let controller = {
@@ -104,8 +124,10 @@
                     let id = $checkedSongList[i].getAttribute('data-song-id')
                     checkedSong.push(id)
                 }
+                this.model.data.selectedSongsId = []
                 this.model.data.selectedSongsId = checkedSong
                 
+                this.model.deleteSongFromList(this.model.data.selectedSongsId).then(()=>{})
                 this.model.addSongToList(this.model.data).then(()=>{
                     alert('歌曲已成功添加至歌单')
                     window.location.href = './admin.html'
