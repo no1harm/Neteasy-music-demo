@@ -31,13 +31,12 @@
         playListId:'',
         songsList:[],
         fetch(id){
-              // 假设 GuangDong 的 objectId 为 56545c5b00b09f857a603632
             var playlist = AV.Object.createWithoutData('Playlist', id)
             var query = new AV.Query('Song')
             query.equalTo('dependent', playlist)
             return query.find().then((songs) => {
-                let data = {}
                 songs.forEach( (song, i, a) => {
+                    let data = {}
                     data.id = song.id
                     Object.assign(data,song.attributes)
                     this.songsList.push(data)
