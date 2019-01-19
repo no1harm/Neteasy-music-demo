@@ -23,7 +23,7 @@
         data:{
             songs:[],
             selectedSongsId:[],
-            songListId:''
+            songListId:'',
         },
         find(){
             let query = new AV.Query('Song')
@@ -32,6 +32,20 @@
                     return {id:song.id,...song.attributes}
                 })
                 return songs
+            })
+        },
+        createOrUpdate(id){
+            var Playlist = AV.Object.createWithoutData('Playlist', id);
+            var query = new AV.Query('Song')
+            query.equalTo('dependent', Playlist)
+            return query.find().then( (lists) => {
+                if(Array.isArray(lists) && lists.length === 0){
+                    return 1
+                }else{
+                    lists.forEach( (song, i, a) => {
+                        this.data.selectedSongsId.push(song.id)
+                    })
+                }
             })
         },
         addSongToList(data){
@@ -46,7 +60,6 @@
                     })
                 )
             })
-            // console.log(promise)
             return Promise.all(promise).then(()=>{
             })
         }
@@ -59,6 +72,14 @@
             this.model.data.songListId = this.getSongId()
             this.model.find().then(()=>{
                 this.view.render(this.model.data)
+            })
+            this.model.createOrUpdate(this.model.data.songListId).then((data)=>{
+                if(data === 1){
+                    console.log('是在创建歌单')                    
+                }else{
+                    console.log('是在更新歌单')
+                    console.log(this.model.data.selectedSongsId)
+                }
             })
             this.bindEvents()
         },

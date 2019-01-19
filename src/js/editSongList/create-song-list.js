@@ -67,12 +67,13 @@
                     return prev
                 },data)
                 if(this.model.createOrUpdate === 'create-list'){
-                    window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
                     this.model.createSongList(data).then(()=>{
                     })
+                    window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
                 }else{
                     this.model.updateSongList(data).then(()=>{
-                        alert('updated!')                      
+                        alert('updated!')
+                        window.location.href = `./edit-song-list.html?id=${this.model.data.id}` 
                     })
                 }
             })
