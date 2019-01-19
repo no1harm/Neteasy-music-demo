@@ -102,16 +102,17 @@
             this.model.data.songListId = this.getSongId()
             this.model.find().then(()=>{
                 this.view.render(this.model.data)
+                this.model.createOrUpdate(this.model.data.songListId).then((data)=>{
+                    if(data === 1){
+                        console.log('是在创建歌单')                    
+                    }else{
+                        console.log('是在更新歌单')
+                        console.log(this.model.data.selectedSongsId)
+                        this.view.reRender(this.model.data.selectedSongsId)
+                    }
+                })
             })
-            this.model.createOrUpdate(this.model.data.songListId).then((data)=>{
-                if(data === 1){
-                    console.log('是在创建歌单')                    
-                }else{
-                    console.log('是在更新歌单')
-                    console.log(this.model.data.selectedSongsId)
-                    this.view.reRender(this.model.data.selectedSongsId)
-                }
-            })
+            
             this.bindEvents()
         },
         bindEvents(){
