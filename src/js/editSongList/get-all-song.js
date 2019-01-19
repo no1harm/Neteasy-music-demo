@@ -17,6 +17,16 @@
                 this.$el.find('form').append($div)
             })
             this.$el.find('form').append(`<button type="submit">提交</button>`)
+        },
+        reRender(idList){
+            idList.map((id)=>{
+                let inputs = document.querySelectorAll('form input')
+                for(let i=0;i<inputs.length;i++){
+                    if(id === inputs[i].getAttribute('data-song-id')){
+                        inputs[i].checked = true
+                    }
+                }
+            })
         }
     }
     let model = {
@@ -79,6 +89,7 @@
                 }else{
                     console.log('是在更新歌单')
                     console.log(this.model.data.selectedSongsId)
+                    this.view.reRender(this.model.data.selectedSongsId)
                 }
             })
             this.bindEvents()
