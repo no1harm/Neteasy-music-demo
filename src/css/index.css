@@ -4,6 +4,12 @@ body{
     font-size: 15px;
     background: white;
   }
+  .icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
   .sectionTitle{
     border-left: 2px solid #D43C33;
     font-size: 17px;
@@ -185,4 +191,31 @@ body{
     font-size: 12px;
     color: #888;
     transform: scale(.75);
+  }
+
+  .page-3 .input-wrapper{
+    display: flex;
+    margin: 20px 0;
+    justify-content: center;
+    position: relative;
+  }
+  .page-3 .input-wrapper .icon{
+    fill:#eee;
+    width: 1.6em;
+    height: 1.6em;
+    position: absolute;
+    top: 20%;
+    left: 14%;
+  }
+  .page-3 .input-wrapper input{
+    width: 80%;
+    padding:10px;
+    padding-left: 3.6em;
+    border:1px solid #eee;
+    border-radius: 999px;
+    outline: none;
+    color:#333;
+  }
+  .page-3 .input-wrapper input:focus{
+    border: 1px solid #D43C33;
   }

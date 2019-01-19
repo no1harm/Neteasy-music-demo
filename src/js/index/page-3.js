@@ -11,13 +11,26 @@
             this.$el.removeClass('active')
         }
     }
-    let model = {}
+    let model = {
+        search(string){
+            console.log(string)
+        }
+    }
     let controller = {
         init(view,model){
             this.view = view
             this.view.init()
             this.model = model
+            this.bindEvents()
             this.bindEventsHub()
+        },
+        bindEvents(){
+            this.view.$el.find('#search').keypress((e)=>{
+                if(e.keyCode === 13){
+                    let string = e.currentTarget.value
+                    this.model.search(string)
+                }
+            })
         },
         bindEventsHub(){
             window.eventHub.on('selectedTab',(data)=>{
