@@ -5,26 +5,32 @@
             this.$el = $(this.el)
         },
         render(data){
-            console.log(data)
-            data.map((song)=>{
-                let $li = $(`
-                <li>
-                    <h3>${song.name}</h3>
-                    <p>
-                        <svg class="icon icon-sq">
-                            <use xlink:href="#icon-sq"></use>
-                        </svg>
-                        ${song.singer}
-                    </p>
-                    <a class="playButton" href="./song.html?id=${song.id}">
-                        <svg class="icon icon-play">
-                            <use xlink:href="#icon-play"></use>
-                        </svg>
-                    </a>
-                </li>
+            if(data.length === 0){
+                let $span = $(`
+                <span>此歌单暂未添加歌曲<span>
                 `)
-                this.$el.find('ol#songs').append($li)
-            })        
+                this.$el.find('ol#songs').append($span)
+            }else{
+                data.map((song)=>{
+                    let $li = $(`
+                    <li>
+                        <h3>${song.name}</h3>
+                        <p>
+                            <svg class="icon icon-sq">
+                                <use xlink:href="#icon-sq"></use>
+                            </svg>
+                            ${song.singer}
+                        </p>
+                        <a class="playButton" href="./song.html?id=${song.id}">
+                            <svg class="icon icon-play">
+                                <use xlink:href="#icon-play"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    `)
+                    this.$el.find('ol#songs').append($li)
+                })
+            }  
         }
     }
     let model = {

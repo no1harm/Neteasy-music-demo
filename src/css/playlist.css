@@ -132,3 +132,9 @@ section.songs{}
       min-height: 60px;
       bottom: 0;
   }
+  section.songs > .list span{
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    padding-left: 10px;
+  }
