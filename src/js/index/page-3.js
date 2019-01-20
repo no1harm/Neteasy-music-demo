@@ -9,11 +9,34 @@
         },
         hide(){
             this.$el.removeClass('active')
+        },
+        render(data){
+
         }
     }
     let model = {
-        search(string){
-            console.log(string)
+        keyWords:[],
+        searchResult:{
+            singerResult:[],
+            songResult:[],
+            playListResult:[]
+        },
+        search(keyWords){
+            let promise = []
+            console.log(keyWords)
+            keyWords.map((word)=>{
+                let singer = new AV.Query('Song')
+                singer.contains('singer', word)
+                promise.push(singer.find().then((sings)=>{
+                    sings.map(sing=>{
+                        let obj = {}
+                        obj.id = sing.id
+                        Object.assign(obj,sing.attributes)
+                        this.searchResult.singerResult.push(obj)
+                    })
+                }))
+            })
+            return Promise.all(promise).then((data)=>{})
         }
     }
     let controller = {
@@ -28,7 +51,10 @@
             this.view.$el.find('#search').keypress((e)=>{
                 if(e.keyCode === 13){
                     let string = e.currentTarget.value
-                    this.model.search(string)
+                    this.model.keyWords = this.getKeyWords(string)
+                    this.model.search(this.model.keyWords).then((data)=>{
+                        console.log(this.model.searchResult)
+                    })
                 }
             })
         },
@@ -40,6 +66,18 @@
                     this.view.hide()
                 }
             })
+        },
+        getKeyWords(string){
+            let keyWords = []
+            if(string.indexOf(" ") === -1){
+                keyWords.push(string)
+                return keyWords
+            }else{
+                keyWords.push(string)
+                let temp = string.split(' ')
+                let wordArr = keyWords.concat(temp)
+                return wordArr
+            }
         }
     }
     controller.init(view,model)
