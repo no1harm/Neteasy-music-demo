@@ -224,3 +224,38 @@ body{
     border: 1px solid #D43C33;
     color:#333;
   }
+
+
+
+  .page-3 > #searchResult {
+    margin-top: 18px;
+  }
+  .page-3 > #searchResult > li > h3{
+    font-size: 17px;
+  }
+  .page-3 > #searchResult > li > p{
+    font-size: 12px;
+    color: #888;
+  }
+  .page-3 > #searchResult > li{
+    position: relative;
+    margin-left: 10px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    border-bottom: 1px solid #E2E2E3;
+  }
+  .page-3 > #searchResult .playButton{
+    position: absolute;
+    right:8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .page-3 > #searchResult .icon-play{
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    fill: #AAA;
+  }
+  .page-3 > #searchResult .icon-sq{
+    fill: #FE672E;
+  }

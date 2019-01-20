@@ -11,7 +11,35 @@
             this.$el.removeClass('active')
         },
         render(data){
+            for(let key in data){
+                if(key === 'playListResult'){
+                    data[key].map((playlist)=>{
 
+                    })
+                }else if(key === 'singerResult'){
+                    
+                }else if(key === 'songResult'){
+                    data[key].map((song)=>{
+                        let $li = $(`
+                        <li>
+                            <h3>${song.name}</h3>
+                            <p>
+                                <svg class="icon icon-sq">
+                                    <use xlink:href="#icon-sq"></use>
+                                </svg>
+                                ${song.singer}
+                            </p>
+                            <a class="playButton" href="./song.html?id=${song.id}">
+                                <svg class="icon icon-play">
+                                    <use xlink:href="#icon-play"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        `)
+                        this.$el.find('#searchResult').append($li)
+                    })
+                }
+            }
         },
         emptyInput(){
             this.$el.find('#search').val('')
@@ -42,7 +70,7 @@
                         let obj = {}
                         obj.id = song.id
                         Object.assign(obj,song.attributes)
-                        this.searchResult.singerResult.push(obj)
+                        this.searchResult.songResult.push(obj)
                     })
                 }))
                 this.searchQuery('Playlist','playListResult',word,promise)
@@ -78,7 +106,7 @@
                     this.view.emptyInput()
                     this.model.emptyResult()
                     this.model.search(this.model.keyWords).then((data)=>{
-                        console.log(this.model.searchResult)
+                        this.view.render(this.model.searchResult)
                     })
                 }
             })
