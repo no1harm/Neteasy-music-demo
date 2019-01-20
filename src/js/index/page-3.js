@@ -12,7 +12,10 @@
         },
         render(data){
 
-        }
+        },
+        emptyInput(){
+            this.$el.find('#search').val('')
+        },
     }
     let model = {
         keyWords:[],
@@ -21,18 +24,36 @@
             songResult:[],
             playListResult:[]
         },
+        emptyResult(){
+          for(let key in this.searchResult){
+              this.searchResult[key] = []
+          }  
+        },
         search(keyWords){
             let promise = []
-            console.log(keyWords)
             keyWords.map((word)=>{
                 let singer = new AV.Query('Song')
                 singer.contains('singer', word)
-                promise.push(singer.find().then((sings)=>{
-                    sings.map(sing=>{
+                let name = new AV.Query('Song')
+                name.contains('name', word)
+                let query = AV.Query.or(name,singer)
+                promise.push(query.find().then((songs)=>{
+                    songs.map(song=>{
                         let obj = {}
-                        obj.id = sing.id
-                        Object.assign(obj,sing.attributes)
+                        obj.id = song.id
+                        Object.assign(obj,song.attributes)
                         this.searchResult.singerResult.push(obj)
+                    })
+                }))
+
+                let playlist = new AV.Query('Playlist')
+                playlist.contains('name',word)
+                promise.push(playlist.find().then((lists)=>{
+                    lists.map(list=>{
+                        let obj = {}
+                        obj.id = list.id
+                        Object.assign(obj,list.attributes)
+                        this.searchResult.playListResult.push(obj)
                     })
                 }))
             })
@@ -52,6 +73,8 @@
                 if(e.keyCode === 13){
                     let string = e.currentTarget.value
                     this.model.keyWords = this.getKeyWords(string)
+                    this.view.emptyInput()
+                    this.model.emptyResult()
                     this.model.search(this.model.keyWords).then((data)=>{
                         console.log(this.model.searchResult)
                     })
