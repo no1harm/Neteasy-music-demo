@@ -45,19 +45,21 @@
                         this.searchResult.singerResult.push(obj)
                     })
                 }))
-
-                let playlist = new AV.Query('Playlist')
-                playlist.contains('name',word)
-                promise.push(playlist.find().then((lists)=>{
-                    lists.map(list=>{
-                        let obj = {}
-                        obj.id = list.id
-                        Object.assign(obj,list.attributes)
-                        this.searchResult.playListResult.push(obj)
-                    })
-                }))
+                this.searchQuery('Playlist','playListResult',word,promise)
             })
             return Promise.all(promise).then((data)=>{})
+        },
+        searchQuery(className,store,word,promise){
+            let query = new AV.Query(className)
+            query.contains('name',word)
+            promise.push(query.find().then((lists)=>{
+                lists.map(list=>{
+                    let obj = {}
+                    obj.id = list.id
+                    Object.assign(obj,list.attributes)
+                    this.searchResult[store].push(obj)
+                })
+            }))
         }
     }
     let controller = {
