@@ -205,11 +205,19 @@ body{
   }
   .page-3 .input-wrapper  .icon{
     fill:#eee;
-    width: 1.6em;
-    height: 1.6em;
+    width: 1.2em;
+    height: 1.2em;
     position: absolute;
-    top: 8px;
+    top: 10px;
     left: 10px;
+  }
+  .page-3 .input-wrapper  .icon-cancel{
+    fill:#eee;
+    width: 1.2em;
+    height: 1.2em;
+    position: absolute;
+    top: 10px;
+    right:16px;
   }
   .page-3 .input-wrapper input{
     width: 100%;

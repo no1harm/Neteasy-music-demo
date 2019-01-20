@@ -133,6 +133,10 @@
                     })
                 }
             })
+            this.view.$el.find('.icon-cancel').click((e)=>{
+                this.view.emptyInput()
+                this.view.$el.find("#search")[0].focus()
+            })
         },
         bindEventsHub(){
             window.eventHub.on('selectedTab',(data)=>{
