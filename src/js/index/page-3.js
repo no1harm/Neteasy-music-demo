@@ -11,10 +11,22 @@
             this.$el.removeClass('active')
         },
         render(data){
+            this.$el.find("#searchResult").html('')
             for(let key in data){
                 if(key === 'playListResult'){
                     data[key].map((playlist)=>{
-
+                        let $playlist = $(`
+                        <li class="playlist-li">
+                            <img src="${playlist.cover}"></img>
+                            <h3>歌单：${playlist.name}</h3>
+                            <a class="playButton" href="./playlist-detail.html?id=${playlist.id}">
+                                <svg class="icon icon-play">
+                                    <use xlink:href="#icon-right"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        `)
+                        this.$el.find('#searchResult').append($playlist)
                     })
                 }else if(key === 'singerResult'){
                     

@@ -259,3 +259,13 @@ body{
   .page-3 > #searchResult .icon-sq{
     fill: #FE672E;
   }
+  .page-3 > #searchResult .playlist-li h3{
+    padding-left: 18px;
+  }
+  .page-3 > #searchResult .playlist-li{
+    display: flex;
+  }
+  .page-3 > #searchResult .playlist-li img{
+    width: 50px;
+    height: 50px;
+  }
