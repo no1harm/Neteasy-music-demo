@@ -197,25 +197,30 @@ body{
     display: flex;
     margin: 20px 0;
     justify-content: center;
+  }
+  .page-3 .input-wrapper .wrapper{
+    display: inline-block;
+    width: 80%;
     position: relative;
   }
-  .page-3 .input-wrapper .icon{
+  .page-3 .input-wrapper  .icon{
     fill:#eee;
     width: 1.6em;
     height: 1.6em;
     position: absolute;
-    top: 20%;
-    left: 14%;
+    top: 8px;
+    left: 10px;
   }
   .page-3 .input-wrapper input{
-    width: 80%;
+    width: 100%;
     padding:10px;
-    padding-left: 3.6em;
+    padding-left: 3em;
     border:1px solid #eee;
     border-radius: 999px;
     outline: none;
-    color:#333;
+    color:#999;
   }
   .page-3 .input-wrapper input:focus{
     border: 1px solid #D43C33;
+    color:#333;
   }

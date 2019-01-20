@@ -61,10 +61,12 @@
           </li>
           <li class="page-3" >
             <div class="input-wrapper">
+              <div class="wrapper">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-sousuo"></use>
-                </svg>
-              <input id="search" type="text">
+                  </svg>
+                <input id="search" type="text" placeholder="音乐/歌单" onfocus="this.placeholder=''" onblur="this.placeholder='音乐/歌单'" >
+              </div>
             </div>
             <ol id="searchResult"></ol>
           </li>
