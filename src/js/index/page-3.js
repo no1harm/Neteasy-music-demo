@@ -12,6 +12,17 @@
         },
         render(data){
             this.$el.find("#searchResult").html('')
+            let $title
+            if(data.playListResult.length === 0 || data.playListResult.length === 0 || data.playListResult.length === 0){
+                $title = $(`
+                    <h3 class="title">暂无匹配结果</h3>
+                `)
+            }else{
+                $title = $(`
+                    <h3 class="title">最佳匹配</h3>
+                `)
+            }
+            this.$el.find("#searchResult").append($title)
             for(let key in data){
                 if(key === 'playListResult'){
                     data[key].map((playlist)=>{
