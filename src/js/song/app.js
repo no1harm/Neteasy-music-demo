@@ -172,6 +172,57 @@
                 this.view.render(this.model.data)
                 this.view.pause()
             })
+            let position = {
+                oriOffestLeft: 0, // 移动开始时进度条的点距离进度条的偏移值
+                oriX: 0, // 移动开始时的x坐标
+                maxLeft: 0, // 向左最大可拖动距离
+                maxRight: 0 // 向右最大可拖动距离
+            }
+            let flag = false; // 标记是否拖动开始
+            let audio = this.view.$el.find('audio').get(0)
+            let dot = this.view.$el.find('#progressDot').get(0)
+            this.view.$el.on('touchstart','#progressDot',(event)=>{
+                if (!audio.paused || audio.currentTime != 0) { // 只有音乐开始播放后才可以调节，已经播放过但暂停了的也可以
+                    flag = true;
+        
+                    position.oriOffestLeft = dot.offsetLeft;
+                    position.oriX = event.touches ? event.touches[0].clientX : event.clientX; // 要同时适配mousedown和touchstart事件
+                    position.maxLeft = position.oriOffestLeft; // 向左最大可拖动距离
+                    position.maxRight = document.getElementById('progressBarBg').offsetWidth - position.oriOffestLeft; // 向右最大可拖动距离
+        
+                    // 禁止默认事件（避免鼠标拖拽进度点的时候选中文字）
+                    if (event && event.preventDefault) {
+                        event.preventDefault();
+                    } else {
+                        event.returnValue = false;
+                    }
+        
+                    // 禁止事件冒泡
+                    if (event && event.stopPropagation) {
+                        event.stopPropagation();
+                    } else {
+                        window.event.cancelBubble = true;
+                    }
+                }
+            })
+            this.view.$el.on('touchmove','#progressDot',(event)=>{
+                if (flag) {
+                    var clientX = event.touches ? event.touches[0].clientX : event.clientX; // 要同时适配mousemove和touchmove事件
+                    var length = clientX - position.oriX;
+                    if (length > position.maxRight) {
+                        length = position.maxRight;
+                    } else if (length < -position.maxLeft) {
+                        length = -position.maxLeft;
+                    }
+                    var pgsWidth = $('.progress-bar-bg').width();
+                    var rate = (position.oriOffestLeft + length) / pgsWidth;
+                    audio.currentTime = audio.duration * rate;
+                    this.view.updateProgress(audio);
+                }
+            })
+            this.view.$el.on('touchend','#progressDot',(event)=>{
+                flag = false;
+            })
         },
         bindEventsHub(){
             window.eventHub.on('songEnd',()=>{
