@@ -18,7 +18,9 @@
                     this.showLyrics(audio.currentTime)
 
                     this.updateProgress(audio)
-                    console.log(audio.duration)
+                }
+                audio.onloadedmetadata = () =>{
+                    this.$el.find('.audio-length-total').html(this.transTime(audio.duration))
                 }
             }
             if(status === 'playing'){
