@@ -147,16 +147,16 @@ section.songs{}
       left: 0;
       display: flex;
       justify-content: center;
-      align-items: baseline; 
-      background-color: rgba(255, 255, 255, 0.74);     
+      align-items: center; 
+      background-color: rgba(255, 255, 255, 0.74);   
   }
   .comments-wrapper .comment-input{
       background-color: #fff;
       width: 80%;
       min-height: 30px;
       max-height: 300px;  
-      border: 1px solid #D43C33;
-      border-radius: 999px;
+      border: 1px solid #888;
+      border-radius: 18px;
       margin: 10px 0;
       overflow-x: hidden;  
         overflow-y: auto;  
@@ -166,12 +166,16 @@ section.songs{}
   .comments-wrapper .submit-comment{
       width: 30px;
       height: 30px;
-      border: 1px solid #D43C33;
-      border-radius: 999px;
+      border-radius: 50%;
       margin-left: 10px;
-      /* display: flex;
-      justify-content: center; */
+      position: relative;
   }
   .comments-wrapper .submit-comment .icon{
-    
+      fill: #888;
+      width: 1.6em;
+      height: 1.6em;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
   }
