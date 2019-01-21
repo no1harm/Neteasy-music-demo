@@ -4,9 +4,19 @@
         init(){
             this.$el = $(this.el)
         },
+        render(data){
+            data.map((comment)=>{
+                let $li = this.createLi(comment)
+                this.$el.find('ol#comments').prepend($li)
+            })
+        },
         addComment(data){
-            let $li = $(`
-            <li>
+            let $li = this.createLi(data)
+            this.$el.find('ol#comments').prepend($li)
+        },
+        createLi(data){
+            return $(`
+            <li data-comment-id="${data.id}">
                 <div class="avtar">
                     <img  alt="">
                 </div>
@@ -18,7 +28,6 @@
                 </div>
             </li>
             `)
-            this.$el.find('ol#comments').prepend($li)
         },
         emptyInput(selector){
             this.$el.find(selector).empty()
@@ -28,7 +37,19 @@
         playListId:'',
         comments:[],
         currentComment:{},
-        fetch(data){},
+        fetch(data){
+            var playlist = AV.Object.createWithoutData('Playlist', data)
+            var query = new AV.Query('Comments')
+            query.equalTo('dependent', playlist)
+            return query.find().then( (comments) => {
+                comments.map((comment)=>{
+                    let data = {}
+                    data.id = comment.id
+                    Object.assign(data,comment.attributes)
+                    this.comments.push(data)
+                })
+            })
+        },
         setComment(data){
             let playlist = AV.Object.createWithoutData('Playlist',this.playListId)
             let Comments = AV.Object.extend('Comments')
@@ -54,7 +75,10 @@
             this.view.init()
             this.model = model
             this.bindEventsHub()
-            this.model.fetch(this.model.playListId)
+            this.model.playListId = this.getPlayListId()
+            this.model.fetch(this.model.playListId).then(()=>{
+                this.view.render(this.model.comments)
+            })
             this.bindeEvents()
         },
         bindeEvents(){
@@ -70,6 +94,25 @@
             window.eventHub.on('playListId',data =>{
                 this.model.playListId = data
             })
+        },
+        getPlayListId(){
+            let search = window.location.search
+
+            search = search.substring(1)
+
+            let arr = search.split('&').filter(v => v)
+
+            let id = ''
+
+            for(let i =0;i<arr.length;i++){
+                let kv = arr[i].split('=')
+                let key = kv[0]
+                let value = kv[1]
+                if(key === 'id'){
+                    id = value
+                }
+            }
+            return id
         }
     }
     controller.init(view,model)

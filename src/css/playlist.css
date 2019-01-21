@@ -213,6 +213,7 @@ section.songs{}
     color: #666;
   }
   section.comments ol.list li .comment-detail .comment-content{
+    padding-right: 10px;
     color: #333;
     font-size: 15px;
     line-height: 22px;
