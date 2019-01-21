@@ -22,6 +22,9 @@
                 audio.onloadedmetadata = () =>{
                     this.$el.find('.audio-length-total').html(this.transTime(audio.duration))
                 }
+                audio.onended = () =>{
+                    this.audioEnded()
+                }
             }
             if(status === 'playing'){
                 this.$el.find('.disc-container').addClass('playing')
@@ -112,6 +115,10 @@
         pause(){
             let audio = this.$el.find('audio')[0]
             audio.pause()
+        },
+        audioEnded(){
+            $('#progressBar').css('width', 0);
+            $('#progressDot').css('left', 0);
         }
     }
     let model = {
