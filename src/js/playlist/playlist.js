@@ -51,6 +51,7 @@
             this.view.init()
             this.model.playListId = this.getPlayListId()
             this.model.fetch(this.model.playListId).then(()=>{
+                window.eventHub.emit('playListId',this.model.playListId)
                 this.view.render(this.model.data)
             })
         },
