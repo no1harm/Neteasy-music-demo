@@ -131,10 +131,47 @@ section.songs{}
   .footer{
       min-height: 60px;
       bottom: 0;
+      margin-bottom: 60px;
   }
   section.songs > .list span{
     text-align: center;
     font-size: 12px;
     color: #999;
     padding-left: 10px;
+  }
+
+  .comments-wrapper{
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: baseline; 
+      background-color: rgba(255, 255, 255, 0.74);     
+  }
+  .comments-wrapper .comment-input{
+      background-color: #fff;
+      width: 80%;
+      min-height: 30px;
+      max-height: 300px;  
+      border: 1px solid #D43C33;
+      border-radius: 999px;
+      margin: 10px 0;
+      overflow-x: hidden;  
+        overflow-y: auto;  
+        outline: none;
+        padding: 3px 14px;
+  }
+  .comments-wrapper .submit-comment{
+      width: 30px;
+      height: 30px;
+      border: 1px solid #D43C33;
+      border-radius: 999px;
+      margin-left: 10px;
+      /* display: flex;
+      justify-content: center; */
+  }
+  .comments-wrapper .submit-comment .icon{
+    
   }
