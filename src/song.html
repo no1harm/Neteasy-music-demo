@@ -39,11 +39,16 @@
                 </div>
             </div>
         </div>
-        <div class="links">
-            <a href="#">打开</a>
-            <a class="main" href="#">下载</a>
+        <div class="audio-progress">
+            <span class="audio-length-current" id="audioCurTime">00:00</span>
+            <div class="progress-bar-bg" id="progressBarBg">
+                <span id="progressDot"></span>
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <span class="audio-length-total">01:06</span>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js"></script> 
     <script src="//at.alicdn.com/t/font_395875_4hwrep7mypx8ncdi.js"></script>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
     <script src="./js/initializers/av.js"></script>
