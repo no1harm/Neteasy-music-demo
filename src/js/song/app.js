@@ -16,6 +16,9 @@
                 }
                 audio.ontimeupdate = () =>{
                     this.showLyrics(audio.currentTime)
+
+                    this.updateProgress(audio)
+                    console.log(audio.duration)
                 }
             }
             if(status === 'playing'){
@@ -43,6 +46,38 @@
 
                 this.$el.find('.lyric > .lines').append(p)
             })
+        },
+        transTime(value){
+            var time = "";
+            var h = parseInt(value / 3600);
+            value %= 3600;
+            var m = parseInt(value / 60);
+            var s = parseInt(value % 60);
+            if (h > 0) {
+                time = this.formatTime(h + ":" + m + ":" + s);
+            } else {
+                time = this.formatTime(m + ":" + s);
+            }
+        
+            return time;
+        },
+        formatTime(value) {
+            var time = "";
+            var s = value.split(':');
+            var i = 0;
+            for (; i < s.length - 1; i++) {
+                time += s[i].length == 1 ? ("0" + s[i]) : s[i];
+                time += ":";
+            }
+            time += s[i].length == 1 ? ("0" + s[i]) : s[i];
+        
+            return time;
+        },
+        updateProgress(audio){
+            let value = audio.currentTime / audio.duration
+            $('#progressBar').css('width', value * 100 + '%')
+            $('#progressDot').css('left', value * 100 + '%')
+            $('#audioCurTime').html(this.transTime(audio.currentTime))
         },
         showLyrics(time){
             let allP = this.$el.find('.lyric > .lines > p')
