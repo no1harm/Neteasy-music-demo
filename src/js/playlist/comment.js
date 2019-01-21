@@ -6,9 +6,23 @@
         },
         render(data){
             let $li = $(`
-            <li><li>
+            <li>
+                <div class="avtar">
+                    <img  alt="">
+                </div>
+                <div class="comment-detail">
+                    <div class="comment-name">${data.name}</div>
+                    <div class="comment-content">
+                        ${data.content}
+                    </div>
+                </div>
+            </li>
             `)
-        }
+            this.$el.find('ol#comments').prepend($li)
+        },
+        emptyInput(selector){
+            this.$el.find(selector).val('')
+        },
     }
     let model = {
         playListId:'',
@@ -47,7 +61,7 @@
             this.view.$el.on('click','#submit-comment',(e)=>{
                 let value = this.view.$el.find('.comment-input').text()
                 this.model.setComment(value).then(()=>{
-                    console.log(this.model.currentComment)
+                    this.view.emptyInput('#submit-comment')
                     this.view.render(this.model.currentComment)
                 })
             })
