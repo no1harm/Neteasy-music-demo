@@ -5,6 +5,11 @@
             this.$el = $(this.el)
         },
         render(data){
+            if(data.length === 0){
+                this.$el.find('ol#comments').prepend($(`
+                    <span class="no-comment">此歌单暂时没有评论，快来成为沙发！</span>
+                `))
+            }
             data.map((comment)=>{
                 let $li = this.createLi(comment)
                 this.$el.find('ol#comments').prepend($li)
@@ -13,6 +18,9 @@
         addComment(data){
             let $li = this.createLi(data)
             this.$el.find('ol#comments').prepend($li)
+            if(this.$el.find('.no-comment')){
+                this.$el.find('.no-comment').remove()
+            }
         },
         createLi(data){
             return $(`
