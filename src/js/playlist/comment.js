@@ -4,7 +4,7 @@
         init(){
             this.$el = $(this.el)
         },
-        render(data){
+        addComment(data){
             let $li = $(`
             <li>
                 <div class="avtar">
@@ -21,7 +21,7 @@
             this.$el.find('ol#comments').prepend($li)
         },
         emptyInput(selector){
-            this.$el.find(selector).val('')
+            this.$el.find(selector).empty()
         },
     }
     let model = {
@@ -61,8 +61,8 @@
             this.view.$el.on('click','#submit-comment',(e)=>{
                 let value = this.view.$el.find('.comment-input').text()
                 this.model.setComment(value).then(()=>{
-                    this.view.emptyInput('#submit-comment')
-                    this.view.render(this.model.currentComment)
+                    this.view.addComment(this.model.currentComment)
+                    this.view.emptyInput('.comment-input')
                 })
             })
         },

@@ -161,7 +161,9 @@ section.songs{}
       overflow-x: hidden;  
         overflow-y: auto;  
         outline: none;
-        padding: 3px 14px;
+        padding: 5px 14px;
+        color: #333;
+        font-size: 12px;
   }
   .comments-wrapper .submit-comment{
       width: 30px;
