@@ -28,8 +28,10 @@
             }
             if(status === 'playing'){
                 this.$el.find('.operaMenu').addClass('playing')
+                this.$el.find('.disc-container').addClass('playing')
             }else{
                 this.$el.find('.operaMenu').removeClass('playing')
+                this.$el.find('.disc-container').removeClass('playing')
             }
             this.$el.find('.song-description > h1').text(song.name)
             let array = song.lyrics.split('\n')
@@ -123,6 +125,7 @@
     }
     let model = {
         data:{
+            globalPlayList:[],
             song:{
                 name:'',
                 singer:'',
@@ -156,8 +159,9 @@
             this.model.getSong(id).then((data)=>{
                 this.model.data.status = 'playing'
                 this.view.render(this.model.data)
-                // this.view.play()
+                this.view.play()
             })
+            this.getLocalStorage()
             this.bindEvents()
             this.bindEventsHub()
         },
@@ -173,6 +177,12 @@
                 this.view.pause()
             })
             this.progressBarListener()
+            this.view.$el.on('click','.icon-previous',()=>{
+                console.log(this.model.data.globalPlayList)
+            })
+            this.view.$el.on('click','.icon-next',()=>{
+                console.log(this.model.data.globalPlayList)                
+            })
         },
         bindEventsHub(){
             window.eventHub.on('songEnd',()=>{
@@ -251,6 +261,11 @@
                 }
             }
             return id
+        },
+        getLocalStorage(){
+            let storage = localStorage.getItem('globalPlayList')
+            let globalPlayList = storage.split(',')
+            this.model.data.globalPlayList = globalPlayList
         }
     }
     controller.init(view,model)

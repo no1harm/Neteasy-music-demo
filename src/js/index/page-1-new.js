@@ -61,7 +61,7 @@
         setLocalStorage(){
             let storage = localStorage.getItem('globalPlayList')
             if(storage){
-                console.log(storage)
+                // console.log(storage)
             }else{
                 let list = []
                 this.model.data.songs.map(song => {
