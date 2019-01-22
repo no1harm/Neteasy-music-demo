@@ -26,43 +26,49 @@
             for(let key in data){
                 if(key === 'playListResult'){
                     data[key].map((playlist)=>{
-                        let $playlist = $(`
-                        <li class="playlist-li">
-                            <img src="${playlist.cover}"></img>
-                            <h3>歌单：${playlist.name}</h3>
-                            <a class="playButton" href="./playlist-detail.html?id=${playlist.id}">
-                                <svg class="icon icon-play">
-                                    <use xlink:href="#icon-right"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        `)
+                        let $playlist = this.getPlaylist(playlist)
                         this.$el.find('#searchResult').append($playlist)
                     })
                 }else if(key === 'singerResult'){
                     
                 }else if(key === 'songResult'){
                     data[key].map((song)=>{
-                        let $li = $(`
-                        <li>
-                            <h3>${song.name}</h3>
-                            <p>
-                                <svg class="icon icon-sq">
-                                    <use xlink:href="#icon-sq"></use>
-                                </svg>
-                                ${song.singer}
-                            </p>
-                            <a class="playButton" href="./song.html?id=${song.id}">
-                                <svg class="icon icon-play">
-                                    <use xlink:href="#icon-play"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        `)
+                        let $li = this.getLi(song)
                         this.$el.find('#searchResult').append($li)
                     })
                 }
             }
+        },
+        getPlaylist(playlist){
+            return $(`
+            <li class="playlist-li">
+                <img src="${playlist.cover}"></img>
+                <h3>歌单：${playlist.name}</h3>
+                <a class="playButton" href="./playlist-detail.html?id=${playlist.id}">
+                    <svg class="icon icon-play">
+                        <use xlink:href="#icon-right"></use>
+                    </svg>
+                </a>
+            </li>
+            `)
+        },
+        getLi(song){
+            return $(`
+            <li>
+                <h3>${song.name}</h3>
+                <p>
+                    <svg class="icon icon-sq">
+                        <use xlink:href="#icon-sq"></use>
+                    </svg>
+                    ${song.singer}
+                </p>
+                <a class="playButton" href="./song.html?id=${song.id}">
+                    <svg class="icon icon-play">
+                        <use xlink:href="#icon-play"></use>
+                    </svg>
+                </a>
+            </li>
+            `)
         },
         emptyInput(){
             this.$el.find('#search').val('')
