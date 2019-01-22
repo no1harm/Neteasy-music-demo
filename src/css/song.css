@@ -96,6 +96,15 @@
 	color: white;
 }
 
+@keyframes breath-light {
+	0% {
+		box-shadow: 0px 0px 2px 0px rgba(255,255,255,0.3);
+	}
+	100%{
+		box-shadow: 0px 0px 14px 0px rgba(255,255,255,0.9);
+	}
+}
+
 .audio-progress{
 	margin: 36px 0;
 	display: flex;
@@ -128,7 +137,8 @@
     top: 50%;
     margin-top: -5px;
     margin-left: -5px;
-    cursor: pointer;
+	cursor: pointer;
+	animation: breath-light 2.6s infinite alternate-reverse ease;
 }
 .audio-length-current,.audio-length-total{
 	font-size: 12px;
