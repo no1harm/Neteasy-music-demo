@@ -55,7 +55,21 @@
         getSongs(){
             this.model.fetch().then(()=>{
                 this.view.render(this.model.data)
+                this.setLocalStorage()
             })
+        },
+        setLocalStorage(){
+            let storage = localStorage.getItem('globalPlayList')
+            if(storage){
+                console.log(storage)
+            }else{
+                let list = []
+                this.model.data.songs.map(song => {
+                    list.push(song.id)
+                })
+                let string = list.join(',')
+                localStorage.setItem('globalPlayList', string)
+            }
         }
     }
     controller.init(view,model)
