@@ -27,9 +27,9 @@
                 }
             }
             if(status === 'playing'){
-                this.$el.find('.disc-container').addClass('playing')
+                this.$el.find('.operaMenu').addClass('playing')
             }else{
-                this.$el.find('.disc-container').removeClass('playing')
+                this.$el.find('.operaMenu').removeClass('playing')
             }
             this.$el.find('.song-description > h1').text(song.name)
             let array = song.lyrics.split('\n')
@@ -156,7 +156,7 @@
             this.model.getSong(id).then((data)=>{
                 this.model.data.status = 'playing'
                 this.view.render(this.model.data)
-                this.view.play()
+                // this.view.play()
             })
             this.bindEvents()
             this.bindEventsHub()

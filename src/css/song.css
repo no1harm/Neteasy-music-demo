@@ -48,7 +48,7 @@
 .disc-container.playing .icon-play{display: none; }
 
 .song-description{
-	flex-grow: 1;
+	/* flex-grow: 1; */
 	color: #AEABAC;
 	text-align: center;
 	line-height: 2;
@@ -97,7 +97,7 @@
 }
 
 .audio-progress{
-	margin-bottom: 140px;
+	margin: 36px 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -134,3 +134,30 @@
 	font-size: 12px;
 	color: #ddd;
 }
+.operaMenu {
+	width: 100%;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.operaMenu .icon{
+	width: 10vw;
+	height: 10vw;
+	fill: #fff;
+}
+.operaMenu .icon-play{
+	width: 15vw;
+	height: 15vw;
+	margin: 0 40px;
+	fill: #fff;
+}
+.operaMenu .icon-pause{
+	width: 15vw;
+	height: 15vw;
+	margin: 0 40px;
+	fill: #fff;
+}
+.operaMenu .icon-pause{display: none; }
+.operaMenu.playing .icon-pause{display: block; }
+.operaMenu.playing .icon-play{display: none; }
