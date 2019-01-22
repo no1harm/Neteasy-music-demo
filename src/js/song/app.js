@@ -156,7 +156,7 @@
             this.model.getSong(id).then((data)=>{
                 this.model.data.status = 'playing'
                 this.view.render(this.model.data)
-                // this.view.play()
+                this.view.play()
             })
             this.bindEvents()
             this.bindEventsHub()
@@ -172,6 +172,15 @@
                 this.view.render(this.model.data)
                 this.view.pause()
             })
+            this.progressBarListener()
+        },
+        bindEventsHub(){
+            window.eventHub.on('songEnd',()=>{
+                this.model.data.status = 'paused'
+                this.view.render(this.model.data)
+            })
+        },
+        progressBarListener(){
             let position = {
                 oriOffestLeft: 0, // 移动开始时进度条的点距离进度条的偏移值
                 oriX: 0, // 移动开始时的x坐标
@@ -222,12 +231,6 @@
             })
             this.view.$el.on('touchend','#progressDot',(event)=>{
                 flag = false;
-            })
-        },
-        bindEventsHub(){
-            window.eventHub.on('songEnd',()=>{
-                this.model.data.status = 'paused'
-                this.view.render(this.model.data)
             })
         },
         getSongId(){
