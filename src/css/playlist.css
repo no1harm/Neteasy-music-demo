@@ -1,7 +1,7 @@
 body{
     font-size: 15px;
-    background: white;
-    color:#333;
+    background: #171421;
+    color: #D9DADE;
 }
 .sumary-wrapper{
     width: 100%;
@@ -74,26 +74,31 @@ body{
     display: flex;
 }
 .info .tags .tag-list .tag{
-    border: 1px solid #eee;
+    border: 1px solid rgba(217,48,48,.8);
     margin-right: 10px;
     padding: 1px 8px;
     font-size: 12px;
     border-radius:9999px;
+    background-color: rgba(217,48,48,.8);
 }
 .info .summary{
     margin-top: 20px;
     margin-bottom: 10px;
 }
+.info .summary span{
+    padding-right: 6px;
+}
 .info .summary p {
     display: inline-block;
-    color:#333;
 }
 section.songs{}
   section.songs > .list {
     margin-top: 18px;
   }
   section.songs > .list > li > h3{
-    font-size: 17px;
+    font-size: 14px;
+    color: #D9DADE;
+    font-weight: 600;
   }
   section.songs > .list > li > p{
     font-size: 12px;
@@ -104,7 +109,9 @@ section.songs{}
     margin-left: 10px;
     padding-bottom: 6px;
     padding-top: 5px;
-    border-bottom: 1px solid #E2E2E3;
+    /* border-bottom: 1px solid #E2E2E3; */
+    border-bottom: 1px solid #1A1B33;
+
   }
   section.songs > .list .playButton{
     position: absolute;
@@ -148,21 +155,21 @@ section.songs{}
       display: flex;
       justify-content: center;
       align-items: center; 
-      background-color: rgba(255, 255, 255, 0.74);   
+      background-color: #171421;   
   }
   .comments-wrapper .comment-input{
-      background-color: #fff;
+      background-color: #25263E;
       width: 80%;
       min-height: 30px;
       max-height: 300px;  
-      border: 1px solid #888;
+      border: 1px solid #25263E;
       border-radius: 18px;
       margin: 10px 0;
       overflow-x: hidden;  
         overflow-y: auto;  
         outline: none;
         padding: 5px 14px;
-        color: #333;
+        color: #fff;
         font-size: 12px;
   }
   .comments-wrapper .submit-comment{
@@ -173,7 +180,7 @@ section.songs{}
       position: relative;
   }
   .comments-wrapper .submit-comment .icon{
-      fill: #888;
+      fill: #999;
       width: 1.6em;
       height: 1.6em;
     position: absolute;
@@ -196,7 +203,7 @@ section.songs{}
   }
   section.comments ol.list li .avtar{
       display: flex;
-      width: 36px;
+      width: 48px;
       justify-content: center;
   }
   section.comments ol.list li .avtar img{
@@ -210,7 +217,7 @@ section.songs{}
     padding-left: 8px;
     padding-bottom: 8px;
     flex: 1;
-    border-bottom: 1px solid #E2E2E3;
+    border-bottom: 1px solid #1A1B33;
   }
   section.comments ol.list li .comment-detail .comment-name{
     font-size: 14px;
@@ -218,7 +225,7 @@ section.songs{}
   }
   section.comments ol.list li .comment-detail .comment-content{
     padding-right: 10px;
-    color: #333;
+    color: #999;
     font-size: 15px;
     line-height: 22px;
     margin-top: 5px;

@@ -17,7 +17,7 @@
 	top: 0;
 	bottom: 0;
 	position: absolute;
-	filter: blur(38px);	
+	filter: blur(50px);	
 	z-index: -1;
 	background: transparent no-repeat center;
 	background-size: cover;

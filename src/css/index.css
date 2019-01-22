@@ -2,7 +2,8 @@
 /* grey: #888 */
 body{
     font-size: 15px;
-    background: white;
+    color: #fff;
+    background: #171421;
   }
   .icon {
     width: 1em; height: 1em;
@@ -11,8 +12,9 @@ body{
     overflow: hidden;
  }
   .sectionTitle{
-    border-left: 2px solid #D43C33;
-    font-size: 17px;
+    font-weight: 600;
+    border-left: 2px solid #fff;
+    font-size: 18px;
     line-height: 1;
     padding-left: 8px;
     margin: 20px 0 8px;
@@ -23,13 +25,13 @@ body{
     left: 0;
     width: 100%;
     z-index: 1;
-    background: white;
+    background: #171421;
   }
   section.topbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #D43C33;
+    background: #171421;
     padding: 17px 10px;
   }
   section.topbar .logo>svg{
@@ -60,7 +62,7 @@ body{
   /* tabs-nav */
   .tabs-nav{
     display: flex;
-    border-bottom: 1px solid #CCCCCC;
+    /* border-bottom: 1px solid #CCCCCC; */
   }
   .tabs-nav>li{
     width: 33.333333%;
@@ -76,7 +78,7 @@ body{
     top: 1px;
   }
   .tabs-nav >li.active{
-    color: #D43C33;
+    color: #fff;
   }
   .tabs-nav >li.active>.text{ 
   }
@@ -84,7 +86,7 @@ body{
     content: '';
     position: absolute;
     height: 2px;
-    background: #D43C33;
+    background: #fff;
     bottom: 1px;
     left: 0;
     width: 100%;
@@ -109,13 +111,21 @@ body{
   
   section.playlists > ol.songs{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     font-size: 13px;
+    margin: 18px 10px 0;
   }
+  /* 隐藏滚动条 */
+  section.playlists > ol.songs::-webkit-scrollbar { width: 0 !important }
+  section.playlists > ol.songs { -ms-overflow-style: none; }
+  section.playlists > ol.songs { overflow: -moz-scrollbars-none; }
+
   section.playlists > ol.songs a {
-    width: 32.8%;
+    width: 27.8%;
     margin: 8px 0;
+    flex-shrink: 0;
+    margin-right: 10px;
   }
   section.playlists > ol.songs > li p{
     display: -webkit-box;
@@ -127,17 +137,29 @@ body{
     padding: 0 6px;
   }
   section.playlists  ol.songs a li p{
-    text-align: center;
+    padding-top: 24px;
+    color: #D9DADE;
+    font-weight: 600;
+    /* text-align: center; */
   }
   section.playlists > ol.songs a li img{
     width: 100%;
+    height: 100%;
   }
+  section.playlists  ol.songs a li .cover{
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+  }
+
   section.songs{}
   section.songs > .list {
     margin-top: 18px;
   }
   section.songs > .list > li > h3{
-    font-size: 17px;
+    font-size: 14px;
+    color: #D9DADE;
+    font-weight: 600;
   }
   section.songs > .list > li > p{
     font-size: 12px;
@@ -148,7 +170,7 @@ body{
     margin-left: 10px;
     padding-bottom: 6px;
     padding-top: 5px;
-    border-bottom: 1px solid #E2E2E3;
+    border-bottom: 1px solid #1A1B33;
   }
   section.songs > .list .playButton{
     position: absolute;
@@ -168,7 +190,7 @@ body{
   section.art{
     padding-top: 38px;
     padding-bottom: 18px;
-    background: transparent url(//i.loli.net/2017/08/25/599f862b9c98d.png) no-repeat center;
+    /* background: transparent url(//i.loli.net/2017/08/25/599f862b9c98d.png) no-repeat center; */
     background-size: cover;
     text-align: center;
   }
@@ -204,7 +226,7 @@ body{
     position: relative;
   }
   .page-3 .input-wrapper  .icon{
-    fill:#eee;
+    fill:#666;
     width: 1.2em;
     height: 1.2em;
     position: absolute;
@@ -212,9 +234,9 @@ body{
     left: 10px;
   }
   .page-3 .input-wrapper  .icon-cancel{
-    fill:#eee;
-    width: 1.2em;
-    height: 1.2em;
+    fill:#666;
+    width: 1em;
+    height: 1em;
     position: absolute;
     top: 10px;
     right:16px;
@@ -229,7 +251,7 @@ body{
     color:#999;
   }
   .page-3 .input-wrapper input:focus{
-    border: 1px solid #D43C33;
+    /* border: 1px solid #D43C33; */
     color:#333;
   }
 
@@ -239,7 +261,9 @@ body{
     margin-top: 18px;
   }
   .page-3 > #searchResult > li > h3{
-    font-size: 17px;
+    /* font-size: 17px; */
+    font-weight: 600;
+    font-size: 14px;
   }
   .page-3 > #searchResult > li > p{
     font-size: 12px;
@@ -250,7 +274,8 @@ body{
     margin-left: 10px;
     padding-bottom: 6px;
     padding-top: 5px;
-    border-bottom: 1px solid #E2E2E3;
+    margin-right: 10px;
+    /* border-bottom: 1px solid #E2E2E3; */
   }
   .page-3 > #searchResult .playButton{
     position: absolute;
@@ -268,10 +293,16 @@ body{
     fill: #FE672E;
   }
   .page-3 > #searchResult .playlist-li h3{
+    font-weight: 600;
+    font-size: 13px;
     padding-left: 18px;
   }
   .page-3 > #searchResult .playlist-li{
     display: flex;
+    border-radius: 15px;
+    margin-bottom: 8px;
+    padding: 10px 16px;
+    background-color: #25263E;
   }
   .page-3 > #searchResult .playlist-li img{
     width: 50px;
