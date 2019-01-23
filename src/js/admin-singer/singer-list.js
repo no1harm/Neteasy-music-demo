@@ -14,6 +14,9 @@
                 }
                 this.$el.append($li)
             })
+        },
+        updateSinger(data){
+            this.$el.find(`[data-singer-id="${data.id}"]`).html(data.name)
         }
     }
     let model = {
@@ -40,6 +43,7 @@
                 this.view.render(this.model.data)
             })
             this.bindEvents()
+            this.bindEventsHub()
         },
         bindEvents(){
             this.view.$el.on('click','li',(e)=>{
@@ -56,6 +60,15 @@
                 }
                 let copyData = JSON.parse(JSON.stringify(data))
                 window.eventHub.emit('selectedSinger',copyData)
+            })
+        },
+        bindEventsHub(){
+            window.eventHub.on('updateSinger',(data) => {
+                this.view.updateSinger(data)
+            })
+            window.eventHub.on('addSinger',(data) => {
+                this.model.data.singers.push(data)
+                this.view.render(this.model.data)
             })
         }
     }

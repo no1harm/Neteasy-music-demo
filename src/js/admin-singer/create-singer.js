@@ -13,6 +13,7 @@
         }
     }
     let model = {
+        currentSingerId:'',
         data:{
             id:'',
             name:'',
@@ -24,6 +25,7 @@
             let {name,cover,tags,summary} = data
             let singer
             if(id){
+                this.currentSingerId = id
                 singer = AV.Object.createWithoutData('Singer',id)
             }else{
                 let Singer = AV.Object.extend('Singer')
@@ -62,10 +64,13 @@
                 })
                 this.model.saveSinger(data,this.model.data.id).then(()=>{
                     this.reset({})
-                    if(this.model.data.id){
+                    let copyData = JSON.parse(JSON.stringify(this.model.data))
+                    if(this.model.currentSingerId){
                         alert('成功更新歌手信息！')
+                        window.eventHub.emit('updateSinger',copyData)
                     }else{
                         alert('歌手创建成功！')
+                        window.eventHub.emit('addSinger',copyData)
                     }
                 })
             })
