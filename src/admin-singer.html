@@ -6,35 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>新建歌手</title>
     <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/admin-singer.css">
 </head>
 <body>
-    <div class="form-wrapper">
-        <form class="form">
-            <div class="row">
-                <label>歌手封面</label>
-                <input name="cover" type="text" >
+    <div class="singer-page-wrapper">
+        <div class="singer-list">
+            <h1>歌手列表</h1>
+            <ol class="singer-list">
+
+            </ol>
+        </div>
+        <div class="form-wrapper">
+            <h1>歌手信息</h1>
+                <form class="form">
+                    <div class="row">
+                        <label>歌手封面</label>
+                        <input name="cover" type="text" >
+                    </div>
+                    <div class="row">
+                        <label>歌手名字</label>
+                        <input name="name" type="text" >
+                    </div>
+                    <div class="row">
+                        <label>歌手风格/标签</label>
+                        <input name="tags" type="text" >
+                    </div>
+                    <div class="row">
+                        <label>歌手简介</label>
+                        <textarea cols=80 rows=10 name="summary"></textarea>
+                    </div>
+                    <div class="row">
+                        <button type="submit" >保存</button>
+                    </div>
+                </form>
             </div>
-            <div class="row">
-                <label>歌手名字</label>
-                <input name="name" type="text" >
-            </div>
-            <div class="row">
-                <label>歌手风格/标签</label>
-                <input name="tags" type="text" >
-            </div>
-            <div class="row">
-                <label>歌手简介</label>
-                <textarea cols=80 rows=10 name="summary"></textarea>
-            </div>
-            <div class="row">
-                <button type="submit" >保存</button>
-            </div>
-        </form>
     </div>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
     <script src="./js/initializers/av.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./js/admin/event-hub.js"></script>
     <script src="./js/admin-singer/create-singer.js"></script>
+    <script src="./js/admin-singer/singer-list.js"></script>
 </body>
 </html>
