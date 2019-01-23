@@ -109,7 +109,8 @@ body{
     display: table;
   }
   
-  section.playlists > ol.songs{
+  section.playlists > ol.songs,
+  section.singers > ol.singers{
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -117,17 +118,25 @@ body{
     margin: 18px 10px 0;
   }
   /* 隐藏滚动条 */
-  section.playlists > ol.songs::-webkit-scrollbar { width: 0 !important }
-  section.playlists > ol.songs { -ms-overflow-style: none; }
-  section.playlists > ol.songs { overflow: -moz-scrollbars-none; }
+  section.playlists > ol.songs::-webkit-scrollbar,
+  section.singers > ol.singers::-webkit-scrollbar{ width: 0 !important }
+  section.playlists > ol.songs,
+  section.singers > ol.singers{ -ms-overflow-style: none; }
+  section.playlists > ol.songs,
+  section.singers > ol.singers{ overflow: -moz-scrollbars-none; }
 
   section.playlists > ol.songs a {
     width: 27.8%;
-    margin: 8px 0;
+    margin: 8px 10px 0 0;
     flex-shrink: 0;
-    margin-right: 10px;
   }
-  section.playlists > ol.songs > li p{
+  section.singers > ol.singers a {
+    width: 45%;
+    margin: 8px 10px 0 0;
+    flex-shrink: 0;
+  }
+  section.playlists > ol.songs > li p,
+  section.singers > ol.singers > li p{            
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -136,23 +145,34 @@ body{
     height: 36px;
     padding: 0 6px;
   }
-  section.playlists  ol.songs a li p{
+  section.playlists  ol.songs a li p,
+  section.singers  ol.singers a li p{
     padding-top: 24px;
     color: #D9DADE;
     font-weight: 600;
     /* text-align: center; */
   }
-  section.playlists > ol.songs a li img{
+  section.playlists > ol.songs a li img,
+  section.singers > ol.singers a li img{
     width: 100%;
     height: 100%;
   }
-  section.playlists  ol.songs a li .cover{
+  section.playlists  ol.songs a li .cover,
+  section.singers  ol.singers a li .cover{
     border-radius: 10px;
     overflow: hidden;
     display: flex;
   }
+  section.singers  ol.singers a li .cover{
+    width: 100%;
+    height: 20vw;
+    background-color: #D43C33;
+    background: transparent url(//pkzv531js.bkt.clouddn.com/Blade_Runner_2049_Poster.jpg) no-repeat center; 
+    background-size: cover;
+  }
+  
 
-  section.songs{}
+
   section.songs > .list {
     margin-top: 18px;
   }
