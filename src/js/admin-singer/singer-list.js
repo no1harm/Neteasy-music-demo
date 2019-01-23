@@ -64,6 +64,13 @@
         },
         bindEventsHub(){
             window.eventHub.on('updateSinger',(data) => {
+                let list = this.model.data.singers
+                for(let i=0;i<list.length;i++){
+                    if(list[i].id === data.id){
+                        this.model.data.singers[i] = data
+                        break
+                    }
+                }
                 this.view.updateSinger(data)
             })
             window.eventHub.on('addSinger',(data) => {

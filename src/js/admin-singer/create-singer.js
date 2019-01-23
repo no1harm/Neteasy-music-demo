@@ -68,9 +68,11 @@
                     if(this.model.currentSingerId){
                         alert('成功更新歌手信息！')
                         window.eventHub.emit('updateSinger',copyData)
+                        this.resetSingerData()
                     }else{
                         alert('歌手创建成功！')
                         window.eventHub.emit('addSinger',copyData)
+                        this.resetSingerData()
                     }
                 })
             })
@@ -83,6 +85,16 @@
         },
         reset(data){
             this.view.render(data)
+        },
+        resetSingerData(){
+            this.model.currentSingerId = ''
+            this.model.data = {
+                id:'',
+                name:'',
+                tags:'',
+                cover:'',
+                summary:''
+            }
         }
     }
     controller.init(view,model)
