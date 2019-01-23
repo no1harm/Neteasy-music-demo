@@ -33,7 +33,8 @@
                 this.$el.find('.operaMenu').removeClass('playing')
                 this.$el.find('.disc-container').removeClass('playing')
             }
-            this.$el.find('.song-description > h1').text(song.name)
+            this.$el.find('header .song-info-wrapper .song-info > h3').text(song.name)
+            this.$el.find('header .song-info-wrapper .song-info > span').text(song.singer)
             let array = song.lyrics.split('\n')
             array.map((string)=>{
                 let p = document.createElement('p')
@@ -159,7 +160,7 @@
             this.model.getSong(id).then((data)=>{
                 this.model.data.status = 'playing'
                 this.view.render(this.model.data)
-                this.view.play()
+                // this.view.play()
             })
             this.getLocalStorage()
             this.bindEvents()
@@ -179,27 +180,28 @@
             this.progressBarListener()
             this.view.$el.on('click','.icon-previous',()=>{
                 let previousSongId
-                for(let i=0;i<this.model.data.globalPlayList.length;i++){
-                    if(this.model.data.globalPlayList[i] === this.model.data.song.id ){
-                        if(!this.model.data.globalPlayList[i-1]){
-                            previousSongId = this.model.data.globalPlayList[this.model.data.globalPlayList.length - 1]
+                let songList = this.model.data.globalPlayList
+                for(let i=0;i<songList.length;i++){
+                    if(songList[i] === this.model.data.song.id ){
+                        if(!songList[i-1]){
+                            previousSongId = songList[songList.length - 1]
                         }else{
-                            previousSongId = this.model.data.globalPlayList[i-1]
+                            previousSongId = songList[i-1]
                             break
                         }
                     }
                 }
-                console.log(previousSongId)
                 this.jumpUrl(previousSongId)
             })
             this.view.$el.on('click','.icon-next',()=>{
                 let nextSongId
-                for(let i=0;i<this.model.data.globalPlayList.length;i++){
-                    if(this.model.data.globalPlayList[i] === this.model.data.song.id ){
-                        if(!this.model.data.globalPlayList[i+1]){
-                            nextSongId = this.model.data.globalPlayList[1]
+                let songList = this.model.data.globalPlayList
+                for(let i=0;i<songList.length;i++){
+                    if(songList[i] === this.model.data.song.id ){
+                        if(!songList[i+1]){
+                            nextSongId = songList[1]
                         }else{
-                            nextSongId = this.model.data.globalPlayList[i+1]
+                            nextSongId = songList[i+1]
                             break
                         }
                     }

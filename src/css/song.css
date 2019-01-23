@@ -11,13 +11,55 @@
 	background-size: cover;
 	position: relative;
 }
+.page header{
+	height: 60px;
+	width: 100%;
+	flex-shrink: 0;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	border-bottom: 1px solid #d9d9d986;
+	background-color: transparent;
+}
+.page header .back{
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.page header .back .icon{
+	width: 8vw;
+	height: 8vw;
+	fill: #fff;
+}
+.page header .song-info-wrapper{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.page header .song-info-wrapper .song-info{
+	text-align: center;
+}
+.page header .song-info-wrapper .song-info h3{
+	color: white;
+    font-size: 18px;
+}
+.page header .song-info-wrapper .song-info span {
+	color: #d9d9d9;
+	font-size: 13px;
+}
+
 .page .blur-bg{
     height: 100%;
 	width: 100%;
 	top: 0;
 	bottom: 0;
 	position: absolute;
-	filter: blur(50px);	
+	filter: blur(50px) grayscale(10%);	
 	z-index: -1;
 	background: transparent no-repeat center;
 	background-size: cover;
@@ -146,7 +188,7 @@
 }
 .operaMenu {
 	width: 100%;
-	padding: 20px;
+	padding: 0px 0 20px 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
