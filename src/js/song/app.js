@@ -178,7 +178,33 @@
             })
             this.progressBarListener()
             this.view.$el.on('click','.icon-previous',()=>{
-                console.log(this.model.data.globalPlayList)
+                let previousSongId
+                for(let i=0;i<this.model.data.globalPlayList.length;i++){
+                    if(this.model.data.globalPlayList[i] === this.model.data.song.id ){
+                        if(!this.model.data.globalPlayList[i-1]){
+                            previousSongId = this.model.data.globalPlayList[this.model.data.globalPlayList.length - 1]
+                        }else{
+                            previousSongId = this.model.data.globalPlayList[i-1]
+                            break
+                        }
+                    }
+                }
+                console.log(previousSongId)
+                this.jumpUrl(previousSongId)
+            })
+            this.view.$el.on('click','.icon-next',()=>{
+                let nextSongId
+                for(let i=0;i<this.model.data.globalPlayList.length;i++){
+                    if(this.model.data.globalPlayList[i] === this.model.data.song.id ){
+                        if(!this.model.data.globalPlayList[i+1]){
+                            nextSongId = this.model.data.globalPlayList[1]
+                        }else{
+                            nextSongId = this.model.data.globalPlayList[i+1]
+                            break
+                        }
+                    }
+                }
+                this.jumpUrl(nextSongId)
             })
             this.view.$el.on('click','.icon-next',()=>{
                 console.log(this.model.data.globalPlayList)                
@@ -266,6 +292,9 @@
             let storage = localStorage.getItem('globalPlayList')
             let globalPlayList = storage.split(',')
             this.model.data.globalPlayList = globalPlayList
+        },
+        jumpUrl(id){
+            window.location.href = `./song.html?id=${id}`
         }
     }
     controller.init(view,model)
