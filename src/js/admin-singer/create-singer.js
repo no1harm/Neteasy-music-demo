@@ -20,27 +20,15 @@
             cover:'',
             summary:''
         },
-        createSinger(data){
+        saveSinger(data,id){
             let {name,cover,tags,summary} = data
-            let Singer = AV.Object.extend('Singer')
-            let singer = new Singer()
-            singer.set('name',name)
-            singer.set('cover',cover)
-            singer.set('tags',tags)
-            singer.set('summary',summary)
-            return singer.save().then((newSinger) => {
-                let {id,attributes} = newSinger
-                Object.assign(this.data,{
-                    id,
-                    ...attributes
-                })
-            }, function (error) {
-              console.error(error)
-            })
-        },
-        updateSinger(data,id){
-            let {name,cover,tags,summary} = data
-            let singer = AV.Object.createWithoutData('Singer',id)
+            let singer
+            if(id){
+                singer = AV.Object.createWithoutData('Singer',id)
+            }else{
+                let Singer = AV.Object.extend('Singer')
+                singer = new Singer()
+            }
             singer.set('name',name)
             singer.set('cover',cover)
             singer.set('tags',tags)
@@ -72,22 +60,14 @@
                 needs.map((string)=>{
                     data[string] = this.view.$el.find(`[name="${string}"]`).val()
                 })
-                console.log(this.model.data.id)
-                if(this.model.data.id){
-                    this.model.updateSinger(data,this.model.data.id).then(()=>{
-                        this.reset({})
+                this.model.saveSinger(data,this.model.data.id).then(()=>{
+                    this.reset({})
+                    if(this.model.data.id){
                         alert('成功更新歌手信息！')
-                    })
-                }else{
-                    this.model.createSinger(data)
-                    .then(()=>{
-                        this.reset({})
+                    }else{
                         alert('歌手创建成功！')
-                        let obj = JSON.parse(JSON.stringify(this.model.data))
-                        // console.log(obj)
-                        // window.eventHub.emit('create',obj)
-                    })
-                }
+                    }
+                })
             })
         },
         bindEventsHub(){
