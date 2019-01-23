@@ -18,6 +18,10 @@
     font-size: 14px;
     text-align: center;
     border-bottom: 1px solid #ddd;
+    border-left:5px solid transparent;
+}
+.singer-page-wrapper .singer-list-wrapper .singer-list li.active{
+    border-left:5px solid #999;
 }
 .singer-page-wrapper .form-wrapper{
     border:1px solid green;

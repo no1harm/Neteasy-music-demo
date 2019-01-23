@@ -20,7 +20,7 @@
             cover:'',
             summary:''
         },
-        saveSinger(data){
+        createSinger(data){
             let {name,cover,tags,summary} = data
             let Singer = AV.Object.extend('Singer')
             let singer = new Singer()
@@ -37,6 +37,22 @@
             }, function (error) {
               console.error(error)
             })
+        },
+        updateSinger(data,id){
+            let {name,cover,tags,summary} = data
+            let singer = AV.Object.createWithoutData('Singer',id)
+            singer.set('name',name)
+            singer.set('cover',cover)
+            singer.set('tags',tags)
+            singer.set('summary',summary)
+            return singer.save().then((updatedSinger)=>{
+                let {id,attributes} = updatedSinger
+                Object.assign(this.data,{
+                    id,
+                    ...attributes
+                })
+                return singer
+            })
         }
     }
     let controller = {
@@ -44,8 +60,8 @@
             this.view = view 
             this.model = model
             this.view.init()
-            this.init.model = model
             this.bindEvents()
+            this.bindEventsHub()
         },
         bindEvents(){
             this.view.$el.on('submit',(e)=>{
@@ -56,15 +72,29 @@
                 needs.map((string)=>{
                     data[string] = this.view.$el.find(`[name="${string}"]`).val()
                 })
-                this.model.saveSinger(data)
+                console.log(this.model.data.id)
+                if(this.model.data.id){
+                    this.model.updateSinger(data,this.model.data.id).then(()=>{
+                        this.reset({})
+                        alert('成功更新歌手信息！')
+                    })
+                }else{
+                    this.model.createSinger(data)
                     .then(()=>{
                         this.reset({})
                         alert('歌手创建成功！')
                         let obj = JSON.parse(JSON.stringify(this.model.data))
-                        console.log(obj)
+                        // console.log(obj)
                         // window.eventHub.emit('create',obj)
                     })
-                })
+                }
+            })
+        },
+        bindEventsHub(){
+            window.eventHub.on('selectedSinger',(data)=>{
+                Object.assign(this.model.data,data)
+                this.reset(data)
+            })
         },
         reset(data){
             this.view.render(data)

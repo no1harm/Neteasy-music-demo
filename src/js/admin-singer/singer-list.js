@@ -5,14 +5,20 @@
             this.$el = $(this.el)
         },
         render(data){
-            data.map( singer => {
+            this.$el.empty()
+            let {selectedSingerId,singers} = data
+            singers.map( singer => {
                 let $li = $(`<li data-singer-id="${singer.id}">${singer.name}</li>`)
+                if(singer.id === selectedSingerId){
+                    $li.addClass('active')
+                }
                 this.$el.append($li)
             })
         }
     }
     let model = {
         data:{
+            selectedSingerId:'',
             singers:[]
         },
         fetch(){
@@ -31,7 +37,25 @@
             this.model = model
             this.view.init()
             this.model.fetch().then( data =>{
-                this.view.render(this.model.data.singers)
+                this.view.render(this.model.data)
+            })
+            this.bindEvents()
+        },
+        bindEvents(){
+            this.view.$el.on('click','li',(e)=>{
+                let selectedSingerId = e.currentTarget.getAttribute('data-singer-id')
+                this.model.data.selectedSingerId = selectedSingerId
+                this.view.render(this.model.data)
+                let data = {}
+                let list = this.model.data.singers
+                for(let i=0;i<list.length;i++){
+                    if(list[i].id === selectedSingerId){
+                        data = list[i]
+                        break
+                    }
+                }
+                let copyData = JSON.parse(JSON.stringify(data))
+                window.eventHub.emit('selectedSinger',copyData)
             })
         }
     }
