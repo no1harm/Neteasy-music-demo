@@ -1,8 +1,14 @@
 {
     let view = {
-        el:'.singer-list .singer-list',
+        el:'.singer-list-wrapper ol.singer-list',
         init(){
             this.$el = $(this.el)
+        },
+        render(data){
+            data.map( singer => {
+                let $li = $(`<li data-singer-id="${singer.id}">${singer.name}</li>`)
+                this.$el.append($li)
+            })
         }
     }
     let model = {
@@ -25,7 +31,7 @@
             this.model = model
             this.view.init()
             this.model.fetch().then( data =>{
-                console.log(this.model.data)
+                this.view.render(this.model.data.singers)
             })
         }
     }
