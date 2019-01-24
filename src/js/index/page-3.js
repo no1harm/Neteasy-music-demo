@@ -30,7 +30,10 @@
                         this.$el.find('#searchResult').append($playlist)
                     })
                 }else if(key === 'singerResult'){
-                    
+                    data[key].map((singer)=>{
+                        let $singer = this.getSinger(singer)
+                        this.$el.find('#searchResult').append($singer)
+                    })
                 }else if(key === 'songResult'){
                     data[key].map((song)=>{
                         let $li = this.getLi(song)
@@ -38,6 +41,19 @@
                     })
                 }
             }
+        },
+        getSinger(singer){
+            return $(`
+            <li class="singer-li">
+                <img src="${singer.cover}"></img>
+                <h3>歌手：${singer.name}</h3>
+                <a class="playButton" href="./singer-detail.html?id=${singer.id}">
+                    <svg class="icon icon-play">
+                        <use xlink:href="#icon-right"></use>
+                    </svg>
+                </a>
+            </li>
+            `)
         },
         getPlaylist(playlist){
             return $(`
@@ -103,6 +119,7 @@
                     })
                 }))
                 this.searchQuery('Playlist','playListResult',word,promise)
+                this.searchQuery('Singer','singerResult',word,promise)
             })
             return Promise.all(promise).then((data)=>{})
         },

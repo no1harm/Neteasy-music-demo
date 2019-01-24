@@ -312,12 +312,14 @@ body{
   .page-3 > #searchResult .icon-sq{
     fill: #FE672E;
   }
-  .page-3 > #searchResult .playlist-li h3{
+  .page-3 > #searchResult .playlist-li h3,
+  .page-3 > #searchResult .singer-li h3{
     font-weight: 600;
     font-size: 13px;
     padding-left: 18px;
   }
-  .page-3 > #searchResult .playlist-li{
+  .page-3 > #searchResult .playlist-li,
+  .page-3 > #searchResult .singer-li{
     display: flex;
     border-radius: 15px;
     margin-bottom: 8px;
@@ -327,6 +329,10 @@ body{
   .page-3 > #searchResult .playlist-li img{
     width: 50px;
     height: 50px;
+  }
+  .page-3 > #searchResult .singer-li img{
+    width: 68px;
+    height: 51px;
   }
   .page-3 > #searchResult h3.title{
     margin-left: 10px;
