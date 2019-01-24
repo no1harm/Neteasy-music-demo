@@ -4,6 +4,15 @@
         init(){
             this.$el = $(this.el)
         },
+        render(data){
+            let $p
+            if(data){
+                $p = $(`<p>${data}</p>`)
+            }else{
+                $p = $(`<span>该歌手尚未增添简介。</span>`)
+            }
+            this.$el.find('section.singer-desc').append($p)
+        },
         show(){
             this.$el.addClass('active')
         },
@@ -26,6 +35,9 @@
                 }else{
                     this.view.hide()
                 }
+            })
+            window.eventHub.on('singerDesc',(data)=>{
+                this.view.render(data)
             })
         }
     }

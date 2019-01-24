@@ -23,8 +23,8 @@
 .singer-detail-page .singer-info-wrapper .singer-cover{
     width: 100%;
     height: 100%;
-    background-color: #333;
-    background: #333 url(http://pkzv531js.bkt.clouddn.com/jay-cover.jpeg) no-repeat center; 
+    background-color: rgba(217,48,48,.8);
+    background: rgba(217,48,48,.8)  no-repeat center; 
     background-size: cover;
     box-shadow: inset 0px 0px 150px 0px rgba(0,0,0,0.75);
 }
@@ -132,7 +132,18 @@
   section.songs > .list .icon-sq{
     fill: #FE672E;
   }
-
+  section.songs > .list span,
+  .page-desc section.singer-desc span{
+    color: #666;
+    font-size: 14px;
+    padding-left: 6vw;
+  }
+  section.singer-desc p {
+    white-space: pre-wrap;
+    color: #333;
+    font-size: 14px;
+    padding: 0 6vw 6vw 6vw;
+  }
   .tab-content li.page-albums  span{
     color:#666;
     font-size: 14px;

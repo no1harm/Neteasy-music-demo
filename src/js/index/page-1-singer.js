@@ -15,7 +15,7 @@
         },
         getLi(data){
             return $(`
-            <a href="./singer-detail.html?id=${data.id}">
+            <a href="./singer-detail.html?id=${data.id}&name=${data.name}">
                 <li>
                     <div class="cover"></div>
                     <p>${data.name}</p>
