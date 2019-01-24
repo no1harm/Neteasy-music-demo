@@ -20,6 +20,7 @@
             this.bindEventsHub()
             this.loadModule1()
             this.loadModule2()
+            this.loadModule3()
         },
         bindEventsHub(){
             window.eventHub.on('selectedTab',(data)=>{
@@ -40,6 +41,13 @@
         loadModule2(){
             let script = document.createElement('script')
             script.src = "./js/index/page-1-new.js"
+            script.onload = function(){
+            }
+            document.body.appendChild(script)
+        },
+        loadModule3(){
+            let script = document.createElement('script')
+            script.src = "./js/index/page-1-singer.js"
             script.onload = function(){
             }
             document.body.appendChild(script)

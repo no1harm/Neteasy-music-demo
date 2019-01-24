@@ -165,9 +165,10 @@ body{
   }
   section.singers  ol.singers a li .cover{
     width: 100%;
-    height: 20vw;
+    height: 26vw;
     background-color: #D43C33;
-    background: transparent url(//pkzv531js.bkt.clouddn.com/Blade_Runner_2049_Poster.jpg) no-repeat center; 
+    /* background: transparent url(//pkzv531js.bkt.clouddn.com/Blade_Runner_2049_Poster.jpg) no-repeat center;  */
+    background: #D43C33 url(//pkzv531js.bkt.clouddn.com/Blade_Runner_2049_Poster.jpg) no-repeat; 
     background-size: cover;
   }
   
