@@ -90,7 +90,6 @@
     width: 100%;
   }
   .tab-content{
-      border: 1px solid salmon; 
     margin-top: 8vw;
   }
   .tab-content > li{
@@ -98,4 +97,38 @@
   }
   .tab-content > li.active{
     display: block;
+  }
+  section.songs > .list {
+    margin-top: 18px;
+  }
+  section.songs > .list > li > h3{
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+  }
+  section.songs > .list > li > p{
+    font-size: 12px;
+    color: #888;
+  }
+  section.songs > .list > li{
+    position: relative;
+    margin-left: 10px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    border-bottom: 1px solid #ddd;
+  }
+  section.songs > .list .playButton{
+    position: absolute;
+    right:8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  section.songs > .list .icon-play{
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    fill: #AAA;
+  }
+  section.songs > .list .icon-sq{
+    fill: #FE672E;
   }
