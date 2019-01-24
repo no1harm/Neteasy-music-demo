@@ -77,6 +77,10 @@
                 this.model.data.singers.push(data)
                 this.view.render(this.model.data)
             })
+            window.eventHub.on('createSinger',()=>{
+                this.model.data.selectedSingerId = ''
+                this.view.render(this.model.data)
+            })
         }
     }
     controller.init(view,model)

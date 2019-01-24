@@ -12,6 +12,9 @@
     display: flex;
     flex-direction: column;
 }
+.singer-page-wrapper .singer-list-wrapper h1 .createSinger{
+    cursor: pointer;
+}
 .singer-page-wrapper .singer-list-wrapper .singer-list li {
     padding: 4px 10px;
     font-weight: bold;

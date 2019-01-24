@@ -82,6 +82,10 @@
                 Object.assign(this.model.data,data)
                 this.reset(data)
             })
+            window.eventHub.on('createSinger',()=>{
+                this.resetSingerData()
+                this.reset({})
+            })
         },
         reset(data){
             this.view.render(data)
