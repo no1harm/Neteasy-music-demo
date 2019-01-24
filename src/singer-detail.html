@@ -29,9 +29,9 @@
         <div class="singer-artwork-wrapper">
             <section class="globalTabs" id="tabsNav">
                 <ol class="tabs-nav">
-                    <li class=active data-tab-name="page-1"> <div class="text"> 歌曲 </div> </li>
-                    <li data-tab-name="page-3"><div class="text">专辑</div></li>
-                    <li data-tab-name="page-2"><div class="text">歌手简介</div></li>
+                    <li class=active data-tab-name="page-songs"> <div class="text"> 歌曲 </div> </li>
+                    <li data-tab-name="page-albums"><div class="text">专辑</div></li>
+                    <li data-tab-name="page-desc"><div class="text">歌手简介</div></li>
                 </ol>
             </section>
             <ol class="tab-content">
@@ -70,6 +70,7 @@
                     </section>
                 </li>
                 <li class="page-albums" >
+                    <span>专辑功能正在开发中...</span> 
                     <section class="singer-albums">
                         <ol id="songs" class="list">
                         </ol>
@@ -77,8 +78,6 @@
                 </li>
                 <li class="page-desc" >
                     <section class="singer-desc">
-                        <ol id="songs" class="list">
-                        </ol>
                     </section>
                 </li>
             </ol>
@@ -92,5 +91,9 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./js/admin/event-hub.js"></script>
     <script src="./js/singer/singer-info.js"></script>
+    <script src="./js/singer/tabs.js"></script>
+    <script src="./js/singer/page-songs.js"></script>
+    <script src="./js/singer/page-albums.js"></script>
+    <script src="./js/singer/page-desc.js"></script>
 </body>
 </html>

@@ -102,8 +102,8 @@
     margin-top: 18px;
   }
   section.songs > .list > li > h3{
-    font-size: 14px;
-    color: #333;
+    font-size: 17px;
+    color: #666;
     font-weight: 600;
   }
   section.songs > .list > li > p{
@@ -131,4 +131,10 @@
   }
   section.songs > .list .icon-sq{
     fill: #FE672E;
+  }
+
+  .tab-content li.page-albums  span{
+    color:#666;
+    font-size: 14px;
+    padding-left: 6vw;
   }
