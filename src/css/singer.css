@@ -53,5 +53,49 @@
 }
 
 .singer-detail-page .singer-artwork-wrapper{
-
 }
+  /* tabs-nav */
+  .tabs-nav{
+      margin-top: 4vw;
+    display: flex;
+    /* border-bottom: 1px solid #CCCCCC; */
+  }
+  .tabs-nav>li{
+    width: 33.333333%;
+    text-align: center;
+    line-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .tabs-nav>li>.text{
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 5px;
+    position: relative;
+    top: 1px;
+  }
+  .tabs-nav >li.active{
+    color: rgba(217,48,48,.8);
+  }
+  .tabs-nav >li.active>.text{ 
+  }
+  .tabs-nav >li.active>.text::after{
+    content: '';
+    position: absolute;
+    height: 2px;
+    background: rgba(217,48,48,.8);
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+  }
+  .tab-content{
+      border: 1px solid salmon; 
+    margin-top: 8vw;
+  }
+  .tab-content > li{
+    display: none;
+  }
+  .tab-content > li.active{
+    display: block;
+  }
