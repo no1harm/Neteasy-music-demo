@@ -1,0 +1,57 @@
+.singer-detail-page{
+    width: 100%;
+}
+.singer-detail-page .singer-info-wrapper{
+    width: 100%;
+    height: 138vw;
+    position: relative;
+}
+.singer-detail-page .singer-info-wrapper .back {
+    position: absolute;
+	height: 100%;
+	top: -53vw;
+	left: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.singer-detail-page .singer-info-wrapper .back .icon{
+	width: 8vw;
+	height: 8vw;
+	fill: #fff;
+}
+.singer-detail-page .singer-info-wrapper .singer-cover{
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    background: #333 url(http://pkzv531js.bkt.clouddn.com/jay-cover.jpeg) no-repeat center; 
+    background-size: cover;
+    box-shadow: inset 0px 0px 150px 0px rgba(0,0,0,0.75);
+}
+.singer-info {
+    position: absolute;
+    bottom: 8vw;
+    left: 10vw;
+}
+.singer-info .singer-tags{
+    display: flex;
+    margin-bottom: 2vw;
+}
+.singer-info .singer-tags .tag{
+    color:#fff;
+    border: 1px solid rgba(217,48,48,.8);
+    margin-right: 10px;
+    padding: 6px 16px;
+    font-size: 12px;
+    border-radius:9999px;
+    background-color: rgba(217,48,48,.8);
+}
+.singer-info h1{
+    color: #fff;
+    font-size: 38px;
+    font-weight: 500;
+}
+
+.singer-detail-page .singer-artwork-wrapper{
+
+}
