@@ -13,7 +13,7 @@
         render(data){
             this.$el.find("#searchResult").html('')
             let $title
-            if(data.playListResult.length === 0 || data.playListResult.length === 0 || data.playListResult.length === 0){
+            if(data.playListResult.length === 0 || data.singerResult.length === 0 || data.songResult.length === 0){
                 $title = $(`
                     <h3 class="title">暂无匹配结果</h3>
                 `)
@@ -160,8 +160,9 @@
             })
             this.view.$el.find('.icon-cancel').click((e)=>{
                 this.view.emptyInput()
+                this.model.emptyResult()
                 this.view.$el.find("#search")[0].focus()
-                this.view.render()
+                this.view.render(this.model.searchResult)
             })
         },
         bindEventsHub(){
@@ -171,6 +172,13 @@
                 }else{
                     this.view.hide()
                 }
+            }),
+            window.eventHub.on('searchWord',(data)=>{
+                this.view.emptyInput()
+                this.model.emptyResult()
+                this.model.search(data).then(()=>{
+                    this.view.render(this.model.searchResult)
+                })
             })
         },
         getKeyWords(string){
