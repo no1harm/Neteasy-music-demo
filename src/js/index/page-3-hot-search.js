@@ -26,7 +26,6 @@
             this.view.$el.find('.search-tag').on('click',(e)=>{
                 let arr = []
                 arr.push($(e.currentTarget).html())
-                console.log(arr)
                 window.eventHub.emit('searchWord',arr)
             })
         },
