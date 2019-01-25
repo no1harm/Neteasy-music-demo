@@ -280,6 +280,10 @@ body{
     padding: 3vw 6vw;
 
   }
+  .page-3 .hot-search-wrapper span,
+  .page-3 .history-search-wrapper span{
+    font-size: 12px;
+  }
   .page-3 .hot-search-wrapper .search-tags,
   .page-3 .history-search-wrapper .search-tags{
     display: flex;

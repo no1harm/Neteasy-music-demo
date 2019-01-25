@@ -150,7 +150,10 @@
             this.view.$el.find('#search').keypress((e)=>{
                 if(e.keyCode === 13){
                     let string = e.currentTarget.value
-                    this.model.keyWords = this.getKeyWords(string)
+                    if(string.length !== 0){
+                        this.model.keyWords = this.getKeyWords(string)
+                    }
+                    this.setLocalStorage(string)
                     this.view.emptyInput()
                     this.model.emptyResult()
                     this.model.search(this.model.keyWords).then((data)=>{
@@ -192,6 +195,22 @@
                 let wordArr = keyWords.concat(temp)
                 return wordArr
             }
+        },
+        setLocalStorage(string){
+            let storage = localStorage.getItem('searchHistory')
+            let storageList
+            if(storage){
+                storageList = storage.split(',')
+            }else{
+                storageList = []
+            }
+            if(storageList.indexOf(string) === -1){
+                storageList.unshift(string)
+                window.eventHub.emit('prependSearchTag',string)
+            }
+            let cutedList = storageList.slice(0,10)
+            let $string = cutedList.join(',')
+            localStorage.setItem('searchHistory',$string)
         },
         loadModule1(){
             let script = document.createElement('script')

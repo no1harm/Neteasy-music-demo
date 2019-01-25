@@ -1,19 +1,49 @@
 {
     let view = {
-        el:'',
+        el:'.history-search-wrapper .search-tags',
         init(){
             this.$el = $(this.el)
+        },
+        render(data){
+            this.$el.html('')
+            if(data.lenght !== 0){
+                data.map((string)=>{
+                    let $div = $(`<div class="search-tag">${string}</div>`)
+                    this.$el.append($div)
+                })
+            }else{
+                let $div = $(`<div class="search-tag">暂无历史搜索</div>`)
+                this.$el.append($div)
+            }
         }
     }
-    let model = {}
+    let model = {
+        searchHistory:[]
+    }
     let controller = {
         init(view,model){
             this.view = view
             this.view.init()
             this.model = model
+            this.getLocalStorage()
+            this.view.render(this.model.searchHistory)
             this.bindEvents()
+            this.bindEventHub()
         },
-        bindEvents(){}
+        bindEvents(){},
+        getLocalStorage(){
+            let storage = localStorage.getItem('searchHistory')
+            if(storage){
+                let list = storage.split(',')
+                this.model.searchHistory = list
+            }
+        },
+        bindEventHub(){
+            window.eventHub.on('prependSearchTag',(data)=>{
+                this.model.searchHistory.unshift(data)
+                this.view.render(this.model.searchHistory)
+            })
+        }
     }
     controller.init(view,model)
 }
