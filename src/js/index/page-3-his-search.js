@@ -30,7 +30,14 @@
             this.bindEvents()
             this.bindEventHub()
         },
-        bindEvents(){},
+        bindEvents(){
+            this.view.$el.find('.search-tag').on('click',(e)=>{
+                let arr = []
+                arr.push($(e.currentTarget).html())
+                console.log(arr)
+                window.eventHub.emit('searchWord',arr)
+            })
+        },
         getLocalStorage(){
             let storage = localStorage.getItem('searchHistory')
             if(storage){
