@@ -275,6 +275,30 @@ body{
     color:#333;
   }
 
+  .page-3 .hot-search-wrapper,
+  .page-3 .history-search-wrapper{
+    padding: 3vw 6vw;
+
+  }
+  .page-3 .hot-search-wrapper .search-tags,
+  .page-3 .history-search-wrapper .search-tags{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .search-tag{
+    flex-shrink: 0;
+    border: 1px solid rgba(217,48,48,.8);
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 2px 10px;
+    font-size: 12px;
+    border-radius:9999px;
+    background-color: rgba(217,48,48,.8);
+  }
+  
+  .page-3 .history-search-wrapper{
+
+  }
 
 
   .page-3 > #searchResult {

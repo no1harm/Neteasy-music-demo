@@ -143,6 +143,8 @@
             this.model = model
             this.bindEvents()
             this.bindEventsHub()
+            this.loadModule1()
+            this.loadModule2()
         },
         bindEvents(){
             this.view.$el.find('#search').keypress((e)=>{
@@ -182,7 +184,21 @@
                 let wordArr = keyWords.concat(temp)
                 return wordArr
             }
-        }
+        },
+        loadModule1(){
+            let script = document.createElement('script')
+            script.src = "./js/index/page-3-hot-search.js"
+            script.onload = function(){
+            }
+            document.body.appendChild(script)
+        },
+        loadModule2(){
+            let script = document.createElement('script')
+            script.src = "./js/index/page-3-his-search.js"
+            script.onload = function(){
+            }
+            document.body.appendChild(script)
+        },
     }
     controller.init(view,model)
 }
