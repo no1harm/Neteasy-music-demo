@@ -359,8 +359,8 @@ body{
     height: 50px;
   }
   .page-3 > #searchResult .singer-li img{
-    width: 68px;
-    height: 51px;
+    width: 32vw;
+    height: 24vw;
   }
   .page-3 > #searchResult h3.title{
     margin-left: 10px;

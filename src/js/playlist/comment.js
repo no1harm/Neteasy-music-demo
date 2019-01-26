@@ -92,10 +92,15 @@
         bindeEvents(){
             this.view.$el.on('click','#submit-comment',(e)=>{
                 let value = this.view.$el.find('.comment-input').text()
-                this.model.setComment(value).then(()=>{
-                    this.view.addComment(this.model.currentComment)
-                    this.view.emptyInput('.comment-input')
-                })
+                if(!value){
+                    alert('请输入有效字符')
+                }else{
+                    let filterValue = value.replace(/[<^|]+/,'&lt;').replace(/[>^|]+/,'&gt;').replace(/[<^|]+/,'&lt;')
+                    this.model.setComment(filterValue).then(()=>{
+                        this.view.addComment(this.model.currentComment)
+                        this.view.emptyInput('.comment-input')
+                    })
+                }
             })
         },
         bindEventsHub(){

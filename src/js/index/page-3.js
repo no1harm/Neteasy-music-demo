@@ -7,14 +7,12 @@
         render(data){
             this.$el.find("#searchResult").html('')
             let $title
-            if(data.playListResult.length === 0 || data.singerResult.length === 0 || data.songResult.length === 0){
-                $title = $(`
-                    <h3 class="title">暂无匹配结果</h3>
-                `)
+            console.log(data)
+            console.log(data.playListResult.length === 0 && data.singerResult.length === 0 && data.songResult.length === 0)
+            if(data.playListResult.length === 0 && data.singerResult.length === 0 && data.songResult.length === 0){
+                $title = $(`<h3 class="title">暂无匹配结果</h3>`)
             }else{
-                $title = $(`
-                    <h3 class="title">最佳匹配</h3>
-                `)
+                $title = $(`<h3 class="title">最佳匹配</h3>`)
             }
             this.$el.find("#searchResult").append($title)
             for(let key in data){
@@ -143,16 +141,19 @@
         bindEvents(){
             this.view.$el.find('#search').keypress((e)=>{
                 if(e.keyCode === 13){
-                    let string = e.currentTarget.value
+                    let string = e.currentTarget.value.trim()
                     if(string.length !== 0){
-                        this.model.keyWords = this.getKeyWords(string)
+                        let filterValue = string.replace(/[<^|]+/,'&lt;').replace(/[>^|]+/,'&gt;').replace(/[<^|]+/,'&lt;')
+                        this.model.keyWords = this.getKeyWords(filterValue)
+                        this.setLocalStorage(filterValue)
+                        this.view.emptyInput()
+                        this.model.emptyResult()
+                        this.model.search(this.model.keyWords).then((data)=>{
+                            this.view.render(this.model.searchResult)
+                        })
+                    }else{
+                        alert('请输入有效关键字')
                     }
-                    this.setLocalStorage(string)
-                    this.view.emptyInput()
-                    this.model.emptyResult()
-                    this.model.search(this.model.keyWords).then((data)=>{
-                        this.view.render(this.model.searchResult)
-                    })
                 }
             })
             this.view.$el.find('.icon-cancel').click((e)=>{

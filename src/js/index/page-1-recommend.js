@@ -40,7 +40,6 @@
             this.view.init()
             this.model = model
             this.model.fetch().then(()=>{
-                console.log(this.model.data)
                 this.view.render(this.model.data)
             })
         }
