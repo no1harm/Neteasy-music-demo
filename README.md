@@ -46,82 +46,86 @@ jQuery / 七牛 / leanCloud / ajax
 
 项目完成过程的笔记：
 
-- [完成一个音乐客户端 - 1](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-1.md)
+## [完成一个音乐客户端 - 1](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-1.md)
 
 关键词：leanCloud / 七牛 / nodejs / uptoken / upload / 获取文件外链 / encodeURIComponent / encodeURI / eventHub / on / emit / Object.assign / 深拷贝 / 存储 / 更新歌曲
 
 内容包括：
 
-如何初始化 leanCloud 实例
+- 如何初始化 leanCloud 实例
 
-七牛上传文件的基本设置
+- 七牛上传文件的基本设置
 
-如何获取七牛上传文件的外链
+- 如何获取七牛上传文件的外链
 
-encodeURI 与 encodeURIComponent 的区别
+- encodeURI 与 encodeURIComponent 的区别
 
-如何通过 eventHub 传递信息
+- 如何通过 eventHub 传递信息
 
-使用 Object.assign() 进行对象属性更新
+- 使用 Object.assign() 进行对象属性更新
 
-进行数据传递时注意选择深拷贝 `JSON.parse(JSON.stringify(data))`
+- 进行数据传递时注意选择深拷贝 `JSON.parse(JSON.stringify(data))`
 
-使用 leanCloud 存储/更新对象
+- 使用 leanCloud 存储/更新对象
 
-- [完成一个音乐客户端 - 2](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-2.md)
+## [完成一个音乐客户端 - 2](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-2.md)
 
 关键词：import / Module / window.location.search / URL / substring / filter / split / audio / play / pause / filter / blur / ended / 歌词滚动 / 正则表达式 / data- / match / setAttribute / timeupdate / currentTime / getBoundingClientRect / alert / 移动端调试 / onerror / console.log / vConsole
 
 内容包括：
 
-如何在项目中未使用 webpack 的情况下中模拟模块化导入
+- 如何在项目中未使用 webpack 的情况下中模拟模块化导入
 
-通过 URL 参数获取数据（`window.location.search`）
+- 通过 URL 参数获取数据（`window.location.search`）
 
-使用 leanCloud 获取对象
+- 使用 leanCloud 获取对象
 
-如何设置背景模糊（`filter:blur()`）
+- 如何设置背景模糊（`filter:blur()`）
 
-audio 的播放与暂停
+- audio 的播放与暂停
 
-如何通过 audio 的 timeupdate 事件实现歌词滚动
+- 如何通过 audio 的 timeupdate 事件实现歌词滚动
 
-项目如何在移动端调试
+- 项目如何在移动端调试
 
-window.onerror() 在调试中的使用方式
+- window.onerror() 在调试中的使用方式
 
-如何使用 vConsole
+- 如何使用 vConsole
 
-- [完成一个音乐客户端 - 3](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-3.md)
+## [完成一个音乐客户端 - 3](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-3.md)
 
 关键词： 一对多 / Promise 遍历 / Promise.all() / 获取表单数据 / reduce / checkbox / 数据获取重复 / keypress / keyCode / focus / blur / leanCloud 关键字查询 / 高度自适应 / contenteditable / audio 歌曲进度条 / loadedmetadata / 歌曲时长 / 进度条拖拽功能 / 隐藏滚动条 /
 
 内容包括：
 
-在 leanCloud 中使用一对多绑定歌曲到歌单
+- 在 leanCloud 中使用一对多绑定歌曲到歌单
 
-遍历中生成 Promise 对象该怎么处理（`Promise.all()`）
+- 遍历中生成 Promise 对象该怎么处理（`Promise.all()`）
 
-使用 reduce 获取表单数据
+- 使用 reduce 获取表单数据
 
-如何使用 jQuery 获取/设置 checkbox 的值
+- 如何使用 jQuery 获取/设置 checkbox 的值
 
-在遍历中数据设置重复的问题
+- 在遍历中数据设置重复的问题
 
-输入框在 focus 和 blur 状态下的 placeholder 的切换
+- 输入框在 focus 和 blur 状态下的 placeholder 的切换
 
-搜索功能的实现（输入值的获取/过滤）
+- 搜索功能的实现（输入值的获取/过滤）
 
-使用 leanCloud 根据字符串查询对象，进行搜索
+- 使用 leanCloud 根据字符串查询对象，进行搜索
 
-使用 jQuery 清空输入框并设置焦点
+- 使用 jQuery 清空输入框并设置焦点
 
-CSS 设置评论框随评论内容增加高度自适应（`contenteditable="true"`）
+- CSS 设置评论框随评论内容增加高度自适应（`contenteditable="true"`）
 
-实现歌曲进度条思路（包括进度显示，进度条拖拽调整歌曲进度）
+- 实现歌曲进度条思路（包括进度显示，进度条拖拽调整歌曲进度）
 
-获取音频时长为 NaN 的解决方法（监听 audio 的 loadedmetadata）
+- 获取音频时长为 NaN 的解决方法（监听 audio 的 loadedmetadata）
 
-使用 CSS 如何隐藏滚动条
+- 使用 CSS 如何隐藏滚动条
 
-使用 localStorage 实现搜索历史展示
+- 使用 localStorage 实现搜索历史展示
+
+## [完成一个音乐客户端 - 4](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-2.md)
+
+关键词： 优化

@@ -160,7 +160,7 @@
             this.model.getSong(id).then((data)=>{
                 this.model.data.status = 'playing'
                 this.view.render(this.model.data)
-                // this.view.play()
+                this.view.play()
             })
             this.getLocalStorage()
             this.bindEvents()

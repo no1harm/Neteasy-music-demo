@@ -4,12 +4,6 @@
         init(){
             this.$el = $(this.el)
         },
-        show(){
-            this.$el.addClass('active')
-        },
-        hide(){
-            this.$el.removeClass('active')
-        },
         render(data){
             this.$el.find("#searchResult").html('')
             let $title
@@ -169,13 +163,6 @@
             })
         },
         bindEventsHub(){
-            window.eventHub.on('selectedTab',(data)=>{
-                if(data === 'page-3'){
-                    this.view.show()
-                }else{
-                    this.view.hide()
-                }
-            }),
             window.eventHub.on('searchWord',(data)=>{
                 this.view.emptyInput()
                 this.model.emptyResult()
