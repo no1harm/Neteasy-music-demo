@@ -31,6 +31,7 @@
             playlist.set('cover', data.cover)
             playlist.set('tags', data.tags)
             return playlist.save().then((newSongList) => {
+                console.log(newSongList.id)
                 this.songListId = newSongList.id
             })
         },
@@ -68,8 +69,8 @@
                 },data)
                 if(this.model.createOrUpdate === 'create-list'){
                     this.model.createSongList(data).then(()=>{
+                        window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
                     })
-                    window.location.href = `./edit-song-list.html?id=${this.model.songListId}`
                 }else{
                     this.model.updateSongList(data).then(()=>{
                         alert('updated!')

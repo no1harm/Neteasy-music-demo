@@ -80,6 +80,7 @@ body{
     font-size: 12px;
     border-radius:9999px;
     background-color: rgba(217,48,48,.8);
+    line-height: 14px;
 }
 .info .summary{
     margin-top: 20px;
@@ -90,6 +91,7 @@ body{
 }
 .info .summary p {
     display: inline-block;
+    text-align: justify;
 }
 section.songs{}
   section.songs > .list {
