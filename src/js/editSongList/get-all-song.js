@@ -128,7 +128,7 @@
                 this.model.data.selectedSongsId = []
                 this.model.data.selectedSongsId = checkedSong
                 
-                this.model.deleteSongFromList(this.model.data.selectedSongsId).then(()=>{})
+                // this.model.deleteSongFromList(this.model.data.selectedSongsId).then(()=>{})
                 this.model.addSongToList(this.model.data).then(()=>{
                     alert('歌曲已成功添加至歌单')
                     window.location.href = './admin.html'
