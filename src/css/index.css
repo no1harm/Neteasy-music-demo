@@ -27,6 +27,19 @@ body{
     z-index: 1;
     background: #171421;
   }
+  .loading{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .page-3 .loading{
+    display: none;
+  }
+  .page-3 .loading.active{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
   section.topbar{
     display: flex;
     justify-content: space-between;

@@ -6,6 +6,7 @@
         },
         render(data){
             let {songList} = data
+            this.$el.find('.loading').empty()
             songList.map((list)=>{
                 let $li = $(`
                 <a href="./playlist-detail.html?id=${list.id}">

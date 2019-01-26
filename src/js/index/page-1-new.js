@@ -6,6 +6,7 @@
         },
         render(data){
             let {songs} = data
+            this.$el.find('.loading').empty()
             songs.map((song)=>{
                 let $li = $(`
                 <li>

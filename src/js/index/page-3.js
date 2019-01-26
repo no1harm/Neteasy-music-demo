@@ -5,10 +5,9 @@
             this.$el = $(this.el)
         },
         render(data){
+            this.$el.find('.loading').removeClass('active')
             this.$el.find("#searchResult").html('')
             let $title
-            console.log(data)
-            console.log(data.playListResult.length === 0 && data.singerResult.length === 0 && data.songResult.length === 0)
             if(data.playListResult.length === 0 && data.singerResult.length === 0 && data.songResult.length === 0){
                 $title = $(`<h3 class="title">暂无匹配结果</h3>`)
             }else{
@@ -141,6 +140,7 @@
         bindEvents(){
             this.view.$el.find('#search').keypress((e)=>{
                 if(e.keyCode === 13){
+                    this.view.$el.find('.loading').addClass('active')
                     let string = e.currentTarget.value.trim()
                     if(string.length !== 0){
                         let filterValue = string.replace(/[<^|]+/,'&lt;').replace(/[>^|]+/,'&gt;').replace(/[<^|]+/,'&lt;')

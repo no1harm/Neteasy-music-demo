@@ -6,6 +6,7 @@
         },
         render(data){
             if(data){
+                this.$el.find('.loading').empty()
                 data.map((singer)=>{
                     let $li = this.getLi(singer)
                     $li.find('.cover').css('background-image',`url(${singer.cover})`)
