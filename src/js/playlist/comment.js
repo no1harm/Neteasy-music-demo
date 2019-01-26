@@ -98,6 +98,7 @@
                     let filterValue = value.replace(/[<^|]+/,'&lt;').replace(/[>^|]+/,'&gt;').replace(/[<^|]+/,'&lt;')
                     this.model.setComment(filterValue).then(()=>{
                         this.view.addComment(this.model.currentComment)
+                        alert('已成功添加评论')
                         this.view.emptyInput('.comment-input')
                     })
                 }

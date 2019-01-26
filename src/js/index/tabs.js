@@ -30,7 +30,6 @@
         },
         locationInit(){
             let search = location.hash
-            console.log(search)
             if(!search){
                 location.href += `#tab=page-1`
             }

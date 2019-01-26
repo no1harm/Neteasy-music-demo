@@ -79,7 +79,7 @@
         },
         emptyInput(){
             this.$el.find('#search').val('')
-        },
+        }
     }
     let model = {
         keyWords:[],
@@ -162,6 +162,10 @@
                 this.view.$el.find("#search")[0].focus()
                 this.view.render(this.model.searchResult)
             })
+            this.view.$el.find('#clearHistorySearch').on('click',(e)=>{
+                this.clearLocalStorage()
+                window.eventHub.emit('clearHistorySearch')
+            })
         },
         bindEventsHub(){
             window.eventHub.on('searchWord',(data)=>{
@@ -170,6 +174,9 @@
                 this.model.search(data).then(()=>{
                     this.view.render(this.model.searchResult)
                 })
+            })
+            window.eventHub.on('setHistoryStamp',(data)=>{
+                this.view.setHistoryStamp()
             })
         },
         getKeyWords(string){
@@ -199,6 +206,9 @@
             let cutedList = storageList.slice(0,10)
             let $string = cutedList.join(',')
             localStorage.setItem('searchHistory',$string)
+        },
+        clearLocalStorage(){
+            localStorage.removeItem('searchHistory')
         },
         loadModule1(){
             let script = document.createElement('script')

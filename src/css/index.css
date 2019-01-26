@@ -382,3 +382,14 @@ body{
     color: #666;
     margin-bottom: 10px;
   }
+  #clearHistorySearch {
+    font-size: 12px;
+    margin-top: 14px;
+  }
+  #clearHistorySearch .icon{
+    width: 1.6em;
+    height: 1.6em;
+    vertical-align: -0.15em;
+    fill: #ddd;
+    overflow: hidden;
+  }

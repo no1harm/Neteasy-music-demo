@@ -49,6 +49,10 @@
                 this.model.searchHistory.unshift(data)
                 this.view.render(this.model.searchHistory)
             })
+            window.eventHub.on('clearHistorySearch',()=>{
+                this.model.searchHistory = []
+                this.view.render(this.model.searchHistory)
+            })
         }
     }
     controller.init(view,model)
