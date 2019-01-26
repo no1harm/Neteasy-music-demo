@@ -5,10 +5,11 @@
             this.$el = $(this.el)
         },
         render(data){
+            console.log(data)
             let {name,cover,tags,summary} = data
             let renderElement = ['name','cover','tags','summary']
             renderElement.map((string) => {
-                this.$el.find(`input[name=${string}]`).val(data[string])
+                this.$el.find(`[name=${string}]`).val(data[string])
             })
         }
     }
