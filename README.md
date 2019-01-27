@@ -128,4 +128,14 @@ jQuery / 七牛 / leanCloud / ajax
 
 ## [完成一个音乐客户端 - 4](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-2.md)
 
-关键词： 优化
+关键词： 优化 / 单页面 / url hash / history.back / XSS / loading / loaders.css / 多对多
+
+- 如何返回上一页而不刷新（单页面应用/url hash）
+
+- 判断输入字符合法化
+
+- 使用 loaders.css 制作 loading 动画
+
+- 清除搜索历史功能
+
+- 如何使用中间表实现多对多（一个歌单内有多首歌曲，一首歌曲可以同时存在多个歌单内）
