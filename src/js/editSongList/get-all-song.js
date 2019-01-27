@@ -45,28 +45,33 @@
             })
         },
         createOrUpdate(id){
-            var Playlist = AV.Object.createWithoutData('Playlist', id);
-            var query = new AV.Query('Song')
-            query.equalTo('dependent', Playlist)
+            let playlist = AV.Object.createWithoutData('Playlist', id)
+            let query = new AV.Query('PlayListMap')
+            query.equalTo('playlist', playlist)
             return query.find().then( (lists) => {
                 if(Array.isArray(lists) && lists.length === 0){
                     return 1
                 }else{
-                    lists.forEach( (song, i, a) => {
+                    lists.forEach( (scm, i, a) => {
+                        let song = scm.get('song')
                         this.data.selectedSongsId.push(song.id)
                     })
+                    return lists
                 }
             })
         },
         addSongToList(data){
             let promise = []
             let {selectedSongsId,songListId} = data
-            let Playlist = AV.Object.createWithoutData('Playlist',songListId)
             selectedSongsId.map((songId)=>{
+                let playlist = AV.Object.createWithoutData('Playlist',songListId)
+                let playListMap = new AV.Object('PlayListMap')
                 let song = AV.Object.createWithoutData('Song',songId)
-                song.set('dependent', Playlist)
+                playListMap.set('playlist', playlist)
+                playListMap.set('song', song)
                 promise.push(
-                    song.save().then((data) => {
+                    playListMap.save().then(()=>{
+                        console.log('成功保存')
                     })
                 )
             })
@@ -81,12 +86,29 @@
                 notCheckedSong.push(id)
             }
             let promise = []
-            let Playlist = AV.Object.createWithoutData('Playlist',this.data.songListId)
+
+            let playlist = AV.Object.createWithoutData('Playlist', this.data.songListId)
+
+            let query = new AV.Query('PlayListMap')
+
+            query.equalTo('playlist', playlist)
+
             notCheckedSong.map((songId)=>{
-                let song = AV.Object.createWithoutData('Song',songId)
-                song.set('dependent', null)
                 promise.push(
-                    song.save().then((data) => {
+                    query.find().then( (songs) => {
+                
+                        songs.forEach( (scm, i, a) => {
+                            let song = scm.get('song')
+                            if(song.id === songId){
+                                let todo = AV.Object.createWithoutData('PlayListMap', scm.id);
+                                todo.destroy().then( (success) => {
+                                    console.log('delected!')
+                                }, function (error) {
+                                    // 删除失败
+                                });
+                            }
+                        })
+                        return songs
                     })
                 )
             })
@@ -123,12 +145,14 @@
                 let $checkedSongList = $("input[name='selectedSong']:checked")
                 for(let i=0;i<$checkedSongList.length;i++){
                     let id = $checkedSongList[i].getAttribute('data-song-id')
-                    checkedSong.push(id)
+                    if(this.model.data.selectedSongsId.indexOf(id) === -1){
+                        checkedSong.push(id)
+                    }
                 }
                 this.model.data.selectedSongsId = []
                 this.model.data.selectedSongsId = checkedSong
                 
-                // this.model.deleteSongFromList(this.model.data.selectedSongsId).then(()=>{})
+                this.model.deleteSongFromList(this.model.data.selectedSongsId).then(()=>{})
                 this.model.addSongToList(this.model.data).then(()=>{
                     alert('歌曲已成功添加至歌单')
                     window.location.href = './admin.html'
