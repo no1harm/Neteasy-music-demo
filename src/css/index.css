@@ -50,7 +50,9 @@ body{
   section.topbar .logo>svg{
     width: 142px;height: 25px;
     vertical-align: top;
-  
+  }
+  section.topbar .logo h3{
+    font-weight: 600;
   }
   section.topbar > a{
     color: white;
