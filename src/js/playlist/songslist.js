@@ -35,19 +35,33 @@
     }
     let model = {
         playListId:'',
+        songsIdList:[],
         songsList:[],
-        fetch(id){
-            var playlist = AV.Object.createWithoutData('Playlist', id)
-            var query = new AV.Query('Song')
-            query.equalTo('dependent', playlist)
+        getSongsId(id){
+            let playlist = AV.Object.createWithoutData('Playlist', id)
+            let query = new AV.Query('PlayListMap')
+            query.equalTo('playlist', playlist)
             return query.find().then((songs) => {
                 songs.forEach( (song, i, a) => {
+                    let s = song.get('song')
+                    this.songsIdList.push(s.id)
+                })
+                return songs
+            })
+        },
+        fetch(Idlist){
+            let promise = []
+            Idlist.map((id)=>{
+                let query = new AV.Query('Song')
+                promise.push(query.get(id).then( (song) => {
                     let data = {}
                     data.id = song.id
                     Object.assign(data,song.attributes)
                     this.songsList.push(data)
-                })
-                return songs
+                },  (error)=> {
+                }))
+            })
+            return Promise.all(promise).then(()=>{
             })
         }
     }
@@ -57,8 +71,10 @@
             this.view.init()
             this.model = model
             this.model.playListId = this.getPlayListId()
-            this.model.fetch(this.model.playListId).then(()=>{
-                this.view.render(this.model.songsList)
+            this.model.getSongsId(this.model.playListId).then(()=>{
+                this.model.fetch(this.model.songsIdList).then(()=>{
+                    this.view.render(this.model.songsList)
+                })
             })
         },
         getPlayListId(){
