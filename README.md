@@ -4,13 +4,13 @@
 
 这个音乐移动客户端实现了管理后台功能，使用了七牛作为歌曲数据存储数据库，使用了 leanCloud 存储歌曲、歌手、歌单信息；
 
-至于样式，在一定程度上借鉴了网易云音乐的 UI。
+样式在一定程度上借鉴了网易云音乐的 UI。
 
 主要就是从创建后台，上传内容，数据库记录相关数据，前端从云端数据库获取数据，然后渲染到页面上，整个流程都走了一遍，学习收获了不少，不仅仅是对一些工具的使用（七牛/leanCloud 等）更熟悉，一些 API （jQuery/原生js/audio 等）更了解，重要的是一些编程思想（如 eventHub/MVC）的了解与应用较之前更深入，
 
 **项目地址**：[GitHub](https://github.com/no1harm/Neteasy-music-demo)
 
-**预览地址**：[客户端](x)
+**预览地址**：[项目预览](https://no1harm.github.io/Neteasy-music-demo/src/index.html)
 
 **实现功能**：
 
@@ -18,13 +18,23 @@
 
 - 可在首页查看推荐歌单、热门歌手、最新音乐三个模块
 
+![index](https://ws1.sinaimg.cn/large/006cedGGgy1fzlk0ma7b4j309h0g3whj.jpg)
+
 - 可在搜索页面搜索歌手、歌曲、歌单，并将搜索结果实时展示，同时展示历史搜索信息
+
+![search](https://ws1.sinaimg.cn/large/006cedGGgy1fzlk1ao9ugj309h0gvq3w.jpg)
 
 - 歌单页面，可查看歌单基本信息，所属歌曲，并跳转到歌曲播放页面
 
+![playlist](https://ws1.sinaimg.cn/large/006cedGGgy1fzlk0zm2jdj309h0gvdi2.jpg)
+
 - 歌手页面，可查看歌手基本信息，所属歌曲，并跳转到歌曲播放页面
 
+![singer](https://ws1.sinaimg.cn/large/006cedGGgy1fzlk1nehkrj309h0hewlw.jpg)
+
 - 歌曲播放页面，可播放、暂停，支持歌词滚动、调节歌曲播放进度
+
+![song](https://ws1.sinaimg.cn/large/006cedGGgy1fzlk1uzxqjj309h0gv0xk.jpg)
 
 **所用技术栈**：
 
@@ -126,7 +136,7 @@ jQuery / 七牛 / leanCloud / ajax
 
 - 使用 localStorage 实现搜索历史展示
 
-## [完成一个音乐客户端 - 4](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-2.md)
+## [完成一个音乐客户端 - 4](https://github.com/no1harm/Neteasy-music-demo/blob/master/docs/1-4.md)
 
 关键词： 优化 / 单页面 / url hash / history.back / XSS / loading / loaders.css / 多对多
 
