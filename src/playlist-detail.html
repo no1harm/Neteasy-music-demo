@@ -8,6 +8,7 @@
     <title>Playlist</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/playlist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.min.css" />
 </head>
 
 <body>
@@ -36,6 +37,9 @@
     </div>
     <section class="songs">
         <h2 class="sectionTitle">歌曲列表</h2>
+        <div class="loading">
+            <div class="line-scale-pulse-out"><div></div><div></div><div></div><div></div><div></div></div>
+        </div>   
         <ol id="songs" class="list">
             <!-- <li>
                 <h3>你还要我怎样</h3>
@@ -55,6 +59,9 @@
     </section>
     <section class="comments">
         <h2 class="sectionTitle">评论区</h2>
+        <div class="loading">
+            <div class="line-scale-pulse-out"><div></div><div></div><div></div><div></div><div></div></div>
+        </div>   
         <ol id="comments" class="list">
             <!-- <li>
                 <div class="avtar">
@@ -78,7 +85,7 @@
         </div>
     </section>
     <div class="footer"></div>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.css.min.js"></script>    
     <script src="//at.alicdn.com/t/font_1023711_iqbqw6zb369.js"></script>
     <script src="//at.alicdn.com/t/font_395875_4hwrep7mypx8ncdi.js"></script>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>

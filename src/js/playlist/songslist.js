@@ -5,6 +5,7 @@
             this.$el = $(this.el)
         },
         render(data){
+            this.$el.find('.loading').remove()
             if(data.length === 0){
                 let $span = $(`
                 <span>此歌单暂未添加歌曲<span>

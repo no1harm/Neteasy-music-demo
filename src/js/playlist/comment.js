@@ -5,6 +5,7 @@
             this.$el = $(this.el)
         },
         render(data){
+            this.$el.find('.loading').remove()
             if(data.length === 0){
                 this.$el.find('ol#comments').prepend($(`
                     <span class="no-comment">此歌单暂时没有评论，快来成为沙发！</span>

@@ -233,4 +233,14 @@ section.songs{}
     line-height: 22px;
     margin-top: 5px;
   }
-  
+  .loading{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  section.songs .loading{
+
+  }
+  section.comments .loading{
+      
+  }
