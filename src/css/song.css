@@ -152,6 +152,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-shrink: 0;
 }
 .progress-bar-bg{
 	width: 64%;
@@ -192,6 +193,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-shrink: 0;
 }
 .operaMenu .icon{
 	width: 10vw;
