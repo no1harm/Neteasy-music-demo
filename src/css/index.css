@@ -12,8 +12,8 @@ body{
     overflow: hidden;
  }
   .sectionTitle{
-    font-weight: 600;
-    border-left: 2px solid #fff;
+    /* font-weight: 600; */
+    border-left: 2px solid #D43C33;
     font-size: 18px;
     line-height: 1;
     padding-left: 8px;
@@ -88,6 +88,7 @@ body{
     align-items: center;
   }
   .tabs-nav>li>.text{
+    color: #ddd;
     padding: 10px 5px;
     position: relative;
     top: 1px;
@@ -96,12 +97,13 @@ body{
     color: #fff;
   }
   .tabs-nav >li.active>.text{ 
+    color: #D43C33;
   }
   .tabs-nav >li.active>.text::after{
     content: '';
     position: absolute;
     height: 2px;
-    background: #fff;
+    background: rgba(217,48,48,.8);
     bottom: 1px;
     left: 0;
     width: 100%;
