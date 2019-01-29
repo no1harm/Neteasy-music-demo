@@ -92,7 +92,7 @@
         },
         bindeEvents(){
             this.view.$el.on('click','#submit-comment',(e)=>{
-                let value = this.view.$el.find('.comment-input').text()
+                let value = this.view.$el.find('.comment-input').text().trim()
                 if(!value){
                     alert('请输入有效字符')
                 }else{
