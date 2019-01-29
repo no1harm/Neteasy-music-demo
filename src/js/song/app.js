@@ -158,9 +158,9 @@
             let id = this.getSongId()
             this.model.setId(id)
             this.model.getSong(id).then((data)=>{
-                this.model.data.status = 'playing'
+                this.model.data.status = 'pause'
                 this.view.render(this.model.data)
-                this.view.play()
+                // this.view.play()
             })
             this.getLocalStorage()
             this.bindEvents()
