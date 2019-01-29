@@ -27,6 +27,7 @@
                 let arr = []
                 arr.push($(e.currentTarget).html())
                 window.eventHub.emit('searchWord',arr)
+                window.eventHub.emit('selectedHotWord',$(e.currentTarget).html())
             })
         },
         bindEventsHub(){

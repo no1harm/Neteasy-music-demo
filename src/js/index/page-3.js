@@ -178,6 +178,9 @@
             window.eventHub.on('setHistoryStamp',(data)=>{
                 this.view.setHistoryStamp()
             })
+            window.eventHub.on('selectedHotWord',(string)=>{
+                this.setLocalStorage(string)
+            })
         },
         getKeyWords(string){
             let keyWords = []
