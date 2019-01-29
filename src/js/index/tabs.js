@@ -33,7 +33,7 @@
             if(!search){
                 location.href += `#tab=page-1`
             }
-            this.tab = search.substring(1).split('=')[1]
+            this.tab = search.substring(1).split('=')[1] || 'page-1'
             this.selectedTab()
         },
         selectedTab(){
