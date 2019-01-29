@@ -5,7 +5,7 @@
             this.$el = $(this.el)
         },
         render(){
-            let hotSearchList = ['王菲','周杰伦','The Weekend']
+            let hotSearchList = ['王菲','周杰伦','The Weeknd','陈奕迅','麦浚龙','Star boy']
             hotSearchList.map((word)=>{
                 let $tag = $(`<div class="search-tag">${word}</div>`)
                 this.$el.append($tag)
